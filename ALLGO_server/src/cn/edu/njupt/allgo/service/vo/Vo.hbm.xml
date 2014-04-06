@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+ <class name="cn.edu.njupt.allgo.service.vo.EventAddVo" table="db_eventadd">
+  <id column="eaid" name="eaid" type="java.lang.Integer">
+   <generator class="native"/>
+  </id>
+  <property column="content" generated="never" lazy="false"
+   name="content" type="string"/>
+  <property column="addtime" generated="never" lazy="false"
+   name="addtime" type="cn.edu.njupt.allgo.service.utils.MyDateType"/>
+  <property column="eid" generated="never" lazy="false" name="eid" type="integer"/>
+ </class>
+ <class name="cn.edu.njupt.allgo.service.vo.EventCommentVo" table="db_eventcomment">
+  <id column="commentsid" name="commentsid">
+   <generator class="native"/>
+  </id>
+  <property column="uid" generated="never" lazy="false" name="uid" type="integer"/>
+  <property column="uname" generated="never" lazy="false" name="uname" type="string"/>
+  <property column="sendtime" generated="never" lazy="false"
+   name="sendtime" type="cn.edu.njupt.allgo.service.utils.MyDateType"/>
+  <property column="replyuid" generated="never" lazy="false"
+   name="replyuid" type="integer"/>
+  <property column="replyuname" generated="never" lazy="false"
+   name="replyuname" type="string"/>
+  <property column="texts" generated="never" lazy="false" name="texts" type="string"/>
+  <property column="eid" generated="never" lazy="false" name="eid" type="integer"/>
+ </class>
+ <class name="cn.edu.njupt.allgo.service.vo.EventFollowerVo" table="db_eventfollower">
+  <composite-id mapped="false" unsaved-value="undefined">
+   <key-property column="uid" name="uid" type="java.lang.Integer"/>
+   <key-property column="eid" name="eid" type="java.lang.Integer"/>
+  </composite-id>
+  <property column="uname" generated="never" lazy="false" name="uname" type="string"/>
+ </class>
+ <class name="cn.edu.njupt.allgo.service.vo.EventVo" table="db_event">
+  <id column="eid" name="eid">
+   <generator class="native"/>
+  </id>
+  <property column="outline" generated="never" lazy="false"
+   name="outline" not-null="true" type="string"/>
+  <property column="uid" generated="never" lazy="false" name="uid"
+   not-null="true" type="integer"/>
+  <property column="uname" generated="never" lazy="false" name="uname"
+   not-null="true" type="string"/>
+  <property column="startdate" generated="never" lazy="false"
+   name="startdate" not-null="true" type="cn.edu.njupt.allgo.service.utils.MyDateType"/>
+  <property column="enddate" generated="never" lazy="false"
+   name="enddate" type="cn.edu.njupt.allgo.service.utils.MyDateType"/>
+  <property column="content" generated="never" lazy="false"
+   name="content" not-null="true" type="string"/>
+  <property column="place" generated="never" lazy="false" name="place"
+   not-null="true" type="string"/>
+  <property column="position" generated="never" lazy="false"
+   name="position" not-null="true" type="string"/>
+  <property column="dateline" generated="never" lazy="false"
+   name="dateline" not-null="true" type="cn.edu.njupt.allgo.service.utils.MyDateType"/>
+  <property column="ecategroyname" generated="never" lazy="false"
+   name="ecategroyname" not-null="true" type="string"/>
+  <property column="visible" generated="never" lazy="false"
+   name="visible" not-null="true" type="integer"/>
+  <property column="commentscount" generated="never" lazy="false"
+   name="commentscount" not-null="true" type="integer"/>
+  <property column="followerscount" generated="never" lazy="false"
+   name="followerscount" not-null="true" type="integer"/>
+ </class>
+ <class name="cn.edu.njupt.allgo.service.vo.PrivateMessageVo" table="db_privatemessage">
+  <id column="messageid" name="MessageID">
+   <generator class="native"/>
+  </id>
+  <property column="senderuid" generated="never" lazy="false"
+   name="SenderUID" type="integer"/>
+  <property column="sendername" generated="never" lazy="false"
+   name="SenderName" type="string"/>
+  <property column="receiveruid" generated="never" lazy="false"
+   name="ReceiverUID" type="integer"/>
+  <property column="receivername" generated="never" lazy="false"
+   name="ReceiverName" type="string"/>
+  <property column="contents" generated="never" lazy="false"
+   name="Contents" type="string"/>
+  <property column="sendtime" generated="never" lazy="false"
+   name="Sendtime" type="cn.edu.njupt.allgo.service.utils.MyDateType"/>
+ </class>
+ <class name="cn.edu.njupt.allgo.service.vo.UnreadVo" table="db_unread">
+  <id column="remindid" name="remindid">
+   <generator class="native"/>
+  </id>
+  <property column="rcategroy" generated="never" lazy="false"
+   name="rcategroy" type="integer"/>
+  <property column="id" generated="never" lazy="false" name="id" type="integer"/>
+  <property column="action" generated="never" lazy="false" name="action" type="integer"/>
+  <property column="annotation" generated="never" lazy="false"
+   name="annotation" type="string"/>
+  <property column="time" generated="never" lazy="false" name="time" type="cn.edu.njupt.allgo.service.utils.MyDateType"/>
+  <property column="uid" generated="never" lazy="false" name="uid" type="integer"/>
+  <property column="isread" name="isread" type="boolean"/>
+ </class>
+ <class name="cn.edu.njupt.allgo.service.vo.UserDataVo" table="db_userdate">
+  <id column="uid" name="uid">
+   <generator class="native"/>
+  </id>
+  <property column="uname" generated="never" lazy="false" name="uname"
+   not-null="true" type="string" unique="true"/>
+  <property column="upassword" generated="never" lazy="false"
+   name="upassword" type="string"/>
+  <property column="uemail" generated="never" lazy="false" name="uemail"
+   not-null="true" type="string" unique="true"/>
+  <property column="usex" generated="never" lazy="false" name="usex" type="integer"/>
+  <property column="uhead" generated="never" lazy="false" name="uhead" type="string"/>
+  <property column="ubirthday" generated="never" lazy="false"
+   name="ubirthday" type="cn.edu.njupt.allgo.service.utils.MyDateType"/>
+  <property column="uregdate" generated="never" lazy="false"
+   name="uregdate" type="cn.edu.njupt.allgo.service.utils.MyDateType"/>
+  <property column="uaddress" generated="never" lazy="false"
+   name="uaddress" type="string"/>
+  <property column="usatement" generated="never" lazy="false"
+   name="usatement" type="string"/>
+ </class>
+ <class name="cn.edu.njupt.allgo.service.vo.UserFriendVo" table="db_userfriend">
+  <composite-id mapped="false" unsaved-value="undefined">
+   <key-property column="uid" name="uid" type="java.lang.Integer"/>
+   <key-property column="fid" name="fid" type="java.lang.Integer"/>
+  </composite-id>
+  <property column="fname" generated="never" lazy="false" name="fname" type="string"/>
+  <property column="categroyname" generated="never" lazy="false"
+   name="categroyname" type="string"/>
+ </class>
+</hibernate-mapping>

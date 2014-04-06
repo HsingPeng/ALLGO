@@ -1,0 +1,17 @@
+#MyEclipse Hibernate Properties
+#Wed Mar 26 21:13:23 CST 2014
+genVersionTag=false
+sessionFactoryName=cn.edu.njupt.allgo.service.vo.HibernateSessionFactory
+genAnnotations=false
+configFile=/ALLGO_SERVER/src/hibernate.cfg.xml
+reStrategyClass=
+sessionFactoryId=
+profile=
+detectM2M=false
+genBasicCompId=false
+keyGenerator=
+createConfigFile=true
+basePersistenceClass=
+detectO2O=false
+useJavaTypes=true
+reSettingsFile=
