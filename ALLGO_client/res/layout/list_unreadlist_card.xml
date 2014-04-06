@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
+    android:id="@+id/RelativeLayout_card_0"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/card_background_white"
@@ -37,7 +37,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout4"
+        android:id="@+id/relativeLayout_card_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/relativeLayout_unread_3"

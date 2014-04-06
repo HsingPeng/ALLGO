@@ -1,97 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
+    android:id="@+id/RelativeLayout_card_0"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/card_background_white"
     android:orientation="vertical"
     android:padding="12dp" >
 
-    <TextView
-        android:id="@+id/textView_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="用户的昵称"
-        android:textColor="#666666"
-        android:textSize="18sp" />
-
     <RelativeLayout
-        android:id="@+id/relativeLayout2"
+        android:id="@+id/relativeLayout_card_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/relativeLayout3"
-        android:layout_below="@+id/relativeLayout3"
+        android:layout_alignRight="@+id/relativeLayout1"
         android:layout_marginTop="4dp" >
 
         <TextView
-            android:id="@+id/textView_showplace"
+            android:id="@+id/textView_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_outline"
+            android:layout_toRightOf="@+id/imageView1"
+            android:text="用户的昵称"
+            android:textColor="#666666"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            android:layout_marginRight="4dip"
+            android:scaleType="centerCrop"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="地点 :"
-            android:textColor="#666666"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textView_place"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/textView_showplace"
-            android:text="在哪里哪里士fsdafsdafsdafsdafasfsadf 大夫撒旦法士大夫撒发生飞洒发"
-            android:textColor="#666666"
-            android:textSize="16sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_username"
-        android:layout_below="@+id/textView_username" >
+            android:src="@drawable/default_head" />
 
         <TextView
             android:id="@+id/textView_outline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="大概介绍去哪里干嘛士大夫士大夫士大夫士大夫士大夫撒旦法师法师法师法师"
-            android:textSize="20sp" />
+            android:layout_alignLeft="@+id/textView_username"
+            android:layout_alignParentTop="true"
+            android:text="活动的标题"
+            android:textSize="22sp"
+            android:singleLine="true" />
+
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout4"
+        android:id="@+id/relativeLayout_card_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/relativeLayout2"
-        android:layout_below="@+id/relativeLayout2"
+        android:layout_alignLeft="@+id/relativeLayout_card_3"
+        android:layout_below="@+id/relativeLayout_card_3"
         android:layout_marginTop="4dp" >
 
         <TextView
-            android:id="@+id/textView_showtime"
+            android:id="@+id/textView_place"
+            android:layout_marginTop="4dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="时间 :"
-            android:textColor="#777777"
+            android:layout_toRightOf="@+id/imageView2"
+            android:text="活动地点"
+            android:textColor="#666666"
             android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/icon_act_address" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_card_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/relativeLayout_card_1"
+        android:layout_below="@+id/relativeLayout_card_1" >
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_card_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/relativeLayout_card_2"
+        android:layout_below="@+id/relativeLayout_card_2"
+        android:layout_marginTop="4dp" >
 
         <TextView
             android:id="@+id/textView_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/textView_showtime"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imageView3"
             android:text="明天上午8点"
             android:textColor="#777777"
+            android:layout_marginTop="4dip"
             android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/icon_act_time" />
+
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/relativeLayout4" >
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/relativeLayout_card_4"
+        android:layout_marginTop="4dp" >
 
         <TextView
             android:id="@+id/textView_intro_UName"
@@ -100,29 +129,10 @@
             android:layout_centerHorizontal="true" />
 
         <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="16dp"
-            android:layout_toLeftOf="@+id/textView_intro_UName"
-            android:text="同去" />
-
-        <TextView
-            android:id="@+id/textView_followerscount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="17dp"
-            android:layout_toLeftOf="@+id/textView5"
-            android:text="0人" />
-
-        <TextView
             android:id="@+id/textView_commentscount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="14dp"
+            android:drawablePadding="5.0dip"
             android:layout_toRightOf="@+id/textView_intro_UName"
             android:text="0" />
 
@@ -134,6 +144,22 @@
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/textView_commentscount"
             android:text="评论" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/icon_follower" />
+
+        <TextView
+            android:id="@+id/textView_followerscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imageView4"
+            android:text="0" />
 
     </RelativeLayout>
 
