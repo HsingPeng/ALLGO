@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.edu.njupt.allgo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="cn.edu.njupt.allgo"></instrumentation>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:name="cn.edu.njupt.allgo.application.MyDeclare"
+        android:theme="@style/AppTheme" >
+        <uses-library android:name="android.test.runner"/>
+         <activity
+            android:name="cn.edu.njupt.allgo.FirstACTIVIY"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:launchMode="singleTask" >
+	      <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+          </intent-filter>
+        </activity>
+        
+        <activity
+            android:name="cn.edu.njupt.allgo.WelcomeACTIVITY"
+            android:launchMode="singleTask"
+            android:label="欢迎" >
+        </activity>
+        
+        <activity
+            android:name="cn.edu.njupt.allgo.RegisterACTIVITY"
+            android:label="注册"
+            android:theme="@android:style/Theme.Holo.Light.DialogWhenLarge"
+             >
+            
+        </activity>
+        
+        <activity
+            android:name="cn.edu.njupt.allgo.HomeACTIVITY"
+            android:label="@string/app_name"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTask" >
+            
+        </activity>
+        
+        <activity
+            android:name="cn.edu.njupt.allgo.AddEventACTIVITY"
+            android:theme="@android:style/Theme.Holo.Light.DialogWhenLarge"
+            android:label="组织活动" >
+        </activity>
+        
+        <activity
+            android:name="cn.edu.njupt.allgo.FilterACTIVITY"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"
+            android:label="活动筛选" >
+        </activity>
+        
+        <activity
+            android:name="cn.edu.njupt.allgo.FilterEventACTIVITY"
+            android:label="活动筛选" >
+        </activity>
+        
+        <activity
+            android:name="cn.edu.njupt.allgo.LogOffACTIVITY"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"
+            android:label="正在下线" >
+        </activity>
+        
+        <activity
+            android:name="cn.edu.njupt.allgo.EventPageACTIVITY"
+            android:label="活动主页" >
+        </activity>
+        
+        <activity
+            android:name="cn.edu.njupt.allgo.SettingACTIVITY"
+            android:label="设置" >
+        </activity>
+        
+        <service android:name="cn.edu.njupt.allgo.service.PullService"></service>
+        
+        <activity 
+            android:name="AboutACTIVITY"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
+            ></activity>
+        
+    </application>
+
+</manifest>

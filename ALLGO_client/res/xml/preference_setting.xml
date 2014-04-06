@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+     <PreferenceCategory
+            android:title="常规设置">
+            
+        <CheckBoxPreference
+                android:key="background_preference"
+                android:title="后台接收"
+                android:summary="程序退出后仍然接收消息" />
+
+         <PreferenceScreen
+                android:title="立刻更新"
+                android:summary="立刻更新你的软件">
+
+             />
+        </PreferenceScreen>
+         
+         <CheckBoxPreference
+                android:key="update_preference"
+                android:title="自动更新"
+                android:summary="有更新时自动下载更新" />
+         
+    </PreferenceCategory>
+
+     <PreferenceCategory android:title="账户设置">
+         
+         <PreferenceScreen
+                android:title="退出登录"
+                android:summary="退出当前已经登录的账号">
+
+            <intent android:action="android.intent.action.MAIN"
+                	android:targetPackage="cn.edu.njupt.allgo"
+                    android:targetClass="cn.edu.njupt.allgo.LogOffACTIVITY" />
+        </PreferenceScreen>
+         
+     </PreferenceCategory>
+     
+     <PreferenceCategory android:title="关于">
+         
+         <PreferenceScreen
+                android:title="关于都来"
+                android:summary="都来app的相关信息">
+
+            <intent android:action="android.intent.action.MAIN"
+                	android:targetPackage="cn.edu.njupt.allgo"
+                    android:targetClass="cn.edu.njupt.allgo.AboutACTIVITY" />
+        </PreferenceScreen>
+         
+     </PreferenceCategory>
+     
+</PreferenceScreen>

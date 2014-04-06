@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    style="@style/ButtonBar"
+    android:layout_marginLeft="4sp"
+    android:layout_marginRight="4sp" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout_eventcomment_03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+             >
+
+            <TextView
+                android:id="@+id/textView_eventcomments_UName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户A：" />
+
+            <TextView
+                android:id="@+id/textView_eventcomments_ReplyUName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="回复用户C：" />
+
+            <TextView
+                android:id="@+id/textView_eventcomments_Texts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="我是回复内容我是回复内容我是回复内容" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/TextView_eventcomments_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="评论时间："
+                android:textColor="#777777"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/TextView_eventcomments_SendTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="2014年2月10日"
+                android:textColor="#777777"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_eventcomments"
+        style="@style/ButtonBarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/View02"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="回复TA" />
+	
+	<View  
+	    android:id="@+id/View03"
+	    android:layout_width="0.5dip" 
+	    android:layout_height="wrap_content"
+	    android:background="#e6e6e6"
+	    android:layout_alignTop="@+id/linearLayout_eventcomment_03"
+	    android:layout_alignBottom="@+id/linearLayout_eventcomment_03"
+	    android:layout_toLeftOf="@+id/button_eventcomments"
+	    android:layout_gravity="center_horizontal"
+	    />
+		
+	<View
+        android:id="@+id/View02"
+        android:layout_width="wrap_content"
+        android:layout_height="1dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout_eventcomment_03"
+        android:background="#cccccc" />
+
+</RelativeLayout>

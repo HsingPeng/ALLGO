@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">都来</string>
+    <string name="action_settings">Settings</string>
+    <string name="alert_dialog_update_title">操作</string>
+    <string-array name="home_array">
+        <item>我的主页</item>
+        <item>所有活动</item>
+        <item>我的消息</item>
+        <item>联系人</item>
+        <item>设置</item>
+        <item>退出</item>
+    </string-array>
+    <string-array name="update_event_array">
+        <item>添加活动补充</item>
+        <item>删除活动</item>
+    </string-array>
+	<string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+</resources>

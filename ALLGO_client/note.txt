@@ -1,0 +1,10 @@
+联网
+NetUtil netUtil = new NetUtil("login", refresh, context, new NetCallBack(){
+			@Override
+			public void getResult(JSONObject jsonObject) {
+				
+			}
+			
+		});
+		netUtil.add("uname", name);
+		netUtil.post();

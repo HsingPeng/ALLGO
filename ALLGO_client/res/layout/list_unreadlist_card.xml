@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_background_white"
+    android:orientation="vertical"
+    android:padding="12dp" >
+
+    <TextView
+        android:id="@+id/textView_unread_RCategroy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#666666"
+        android:text="提醒的种类" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_unread_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView_unread_RCategroy"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView_unread_RCategroy" >
+
+        <TextView
+            android:id="@+id/textView_unread_Annotation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+           
+            android:text="有新通知哦哦哦哦哦哦哦哦哦"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/relativeLayout_unread_3"
+        android:layout_below="@+id/relativeLayout_unread_3"
+        android:layout_marginTop="4dp" >
+
+        <TextView
+            android:id="@+id/textView_unread_showtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="时间 :"
+            android:textColor="#777777"
+            android:textSize="12sp"
+             />
+
+        <TextView
+            android:id="@+id/textView_unread_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textView_unread_showtime"
+            android:text="明天上午8点"
+            android:textColor="#777777"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

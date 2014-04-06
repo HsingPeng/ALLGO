@@ -1,0 +1,238 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <EditText
+        android:id="@+id/editText_Outline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="活动概要(晚宴、饮酒、聚会)"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editText_Outline" >
+
+        <cn.edu.njupt.allgo.custom.MyDateSpinnerA
+            android:id="@+id/datespinnerA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5" />
+
+        <cn.edu.njupt.allgo.custom.MyTimeSpinnerA
+            android:id="@+id/timespinnerA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkBox_showDateB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout1"
+        android:text="填写结束时间(可选)" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/checkBox_showDateB" >
+
+        <cn.edu.njupt.allgo.custom.MyDateSpinnerB
+            android:id="@+id/datespinnerB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:visibility="gone" />
+
+        <cn.edu.njupt.allgo.custom.MyTimeSpinnerB
+            android:id="@+id/timespinnerB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/addevetn_linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/linearLayout2" >
+    <EditText
+        android:id="@+id/editText_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="活动地点"
+        android:inputType="text"
+        android:layout_weight="5" > 
+    </EditText>
+
+    <Button
+        android:id="@+id/button_addevent_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="区域" />
+
+    </LinearLayout>
+    
+    <RadioGroup
+        android:id="@+id/radioGroup_Category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addevetn_linearLayout3"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="活动种类"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/radio_tour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="旅游"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/radio_dine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="聚餐"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/radio_sport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="运动"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/radio_amuse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="娱乐"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/radio_meet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="沙龙"
+            android:textSize="13sp" />
+    </RadioGroup>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="wrap_content"
+        android:layout_height="1dip"
+        android:layout_alignBottom="@+id/radioGroup_Category"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="4sp"
+        android:layout_marginRight="4sp"
+        android:background="#bfbfbf" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_visiable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/line2"
+        android:layout_alignRight="@+id/line2"
+        android:layout_below="@+id/line2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:contentDescription="活动种类"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView_intro_UName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="公开范围：" />
+
+        <RadioButton
+            android:id="@+id/radio_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="所有人"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/radio_friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="仅好友"
+            android:textSize="13sp" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/event_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/relativeLayout_addevent_01"
+        android:layout_below="@+id/radioGroup_visiable"
+        android:gravity="top"
+        android:hint="详细内容"
+        android:maxLength="20000"
+        android:padding="8dip" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_addevent_01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentBottom="true"
+          >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonBar" >
+
+            <Button
+                android:id="@+id/Button_cancel"
+                style="@style/ButtonBarButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="取消" />
+
+            <Button
+                android:id="@+id/button_submit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/ButtonBarButton"
+                android:text="确定" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/View08"
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#e6e6e6" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

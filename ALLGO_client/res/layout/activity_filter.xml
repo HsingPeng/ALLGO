@@ -1,0 +1,219 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RadioGroup
+        android:id="@+id/radioGroup_Category1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CheckBox_categroy"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="活动种类"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <RadioButton
+            android:id="@+id/radio_tour1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="旅游"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/radio_dine1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="聚餐"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/radio_sport1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="运动"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/radio_amuse1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="娱乐"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/radio_meet1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="沙龙"
+            android:textSize="13sp" />
+    </RadioGroup>
+
+
+    <CheckBox
+        android:id="@+id/checkBox_StartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/radioGroup_Category1"
+        android:text="筛选活动开始时间" />
+
+    <CheckBox
+        android:id="@+id/checkBox_place"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/RelativeLayout_time_parent"
+        android:text="筛选地点" />
+
+    <CheckBox
+        android:id="@+id/CheckBox_categroy"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textSize="15sp"
+        android:text="筛选活动类型" />
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout_time_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/checkBox_StartTime" >
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout_time"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" >
+		
+            <TextView
+                android:id="@+id/TextView_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="从：" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TextView_from" >
+
+                <cn.edu.njupt.allgo.custom.MyDateSpinnerA
+                    android:id="@+id/datespinnerA1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5" />
+
+                <cn.edu.njupt.allgo.custom.MyTimeSpinnerA
+                    android:id="@+id/timespinnerA1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/TextView_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearLayout1"
+                android:text="到：" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TextView_to" >
+
+                <cn.edu.njupt.allgo.custom.MyDateSpinnerB
+                    android:id="@+id/datespinnerB1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5" />
+
+                <cn.edu.njupt.allgo.custom.MyTimeSpinnerB
+                    android:id="@+id/timespinnerB1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+            </LinearLayout>
+            
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_place_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/checkBox_place"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_place"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" >
+
+            <Spinner
+                android:id="@+id/province_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/city_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/county_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_filter_01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" >
+
+        <LinearLayout
+            style="@style/ButtonBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/Button_cancel1"
+                style="@style/ButtonBarButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="取消" />
+
+            <Button
+                android:id="@+id/button_submit1"
+                style="@style/ButtonBarButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="确定" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/View08"
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#e6e6e6" />
+    </RelativeLayout>
+
+</RelativeLayout>

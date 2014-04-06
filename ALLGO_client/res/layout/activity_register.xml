@@ -1,0 +1,116 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/editText_register_uname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:hint="用户名(昵称)"
+        android:layout_marginTop="4dp"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_register_01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentBottom="true"
+          >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonBar" >
+
+            <Button
+                android:id="@+id/Button_register_cancel"
+                style="@style/ButtonBarButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="取消" />
+
+            <Button
+                android:id="@+id/button_register_submit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/ButtonBarButton"
+                android:text="确定" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/View08"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentTop="true"
+            android:background="#e6e6e6" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/radioGroup_register_sex"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/EditText_register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="邮箱 (重要，请勿输错)"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/EditText_register_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="密码"
+            android:layout_marginTop="4dp"
+            android:inputType="textPassword" />
+        
+        <EditText
+            android:id="@+id/EditText_register_passconfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:hint="密码 （确认一遍）"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroup_register_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_register_uname"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="活动种类"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/radio_man"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="男"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radio_woman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="女"
+            android:textSize="20sp" />
+    </RadioGroup>
+    
+</RelativeLayout>
