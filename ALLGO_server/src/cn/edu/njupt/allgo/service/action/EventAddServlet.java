@@ -31,7 +31,7 @@ public class EventAddServlet extends HttpServlet {
     private int i = 0 ;
     private EventAddDAO dao = new EventDAOimpl();
     
-    public EventAddServlet() {
+    public EventAddServlet(){
         super();
         // TODO Auto-generated constructor stub
     }
