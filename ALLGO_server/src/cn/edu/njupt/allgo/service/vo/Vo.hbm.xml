@@ -94,7 +94,7 @@
    name="annotation" type="string"/>
   <property column="time" generated="never" lazy="false" name="time" type="cn.edu.njupt.allgo.service.utils.MyDateType"/>
   <property column="uid" generated="never" lazy="false" name="uid" type="integer"/>
-  <property column="isread" name="isread" type="boolean"/>
+  <property column="isread" generated="never" lazy="false" name="isread" type="boolean"/>
  </class>
  <class name="cn.edu.njupt.allgo.service.vo.UserDataVo" table="db_userdate">
   <id column="uid" name="uid">
@@ -103,10 +103,11 @@
   <property column="uname" generated="never" lazy="false" name="uname"
    not-null="true" type="string" unique="true"/>
   <property column="upassword" generated="never" lazy="false"
-   name="upassword" type="string"/>
+   name="upassword" not-null="true" type="string"/>
   <property column="uemail" generated="never" lazy="false" name="uemail"
    not-null="true" type="string" unique="true"/>
-  <property column="usex" generated="never" lazy="false" name="usex" type="integer"/>
+  <property column="usex" generated="never" lazy="false" name="usex"
+   not-null="true" type="integer"/>
   <property column="uhead" generated="never" lazy="false" name="uhead" type="string"/>
   <property column="ubirthday" generated="never" lazy="false"
    name="ubirthday" type="cn.edu.njupt.allgo.service.utils.MyDateType"/>

@@ -77,7 +77,6 @@ public class ActionListener implements ServletContextAttributeListener {
 			action15(message);
 			break;
 		}
-		
 	}
 
 	//提交活动评论
