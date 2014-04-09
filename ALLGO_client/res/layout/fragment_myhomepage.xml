@@ -2,7 +2,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-   <cn.edu.njupt.allgo.custom.CustomViewPager
+   <cn.edu.njupt.allgo.widget.CustomViewPager
             android:id="@+id/pager_myhome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

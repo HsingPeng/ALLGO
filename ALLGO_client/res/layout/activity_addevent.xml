@@ -24,13 +24,13 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editText_Outline" >
 
-        <cn.edu.njupt.allgo.custom.MyDateSpinnerA
+        <cn.edu.njupt.allgo.widget.MyDateSpinnerA
             android:id="@+id/datespinnerA"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5" />
 
-        <cn.edu.njupt.allgo.custom.MyTimeSpinnerA
+        <cn.edu.njupt.allgo.widget.MyTimeSpinnerA
             android:id="@+id/timespinnerA"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -53,14 +53,14 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/checkBox_showDateB" >
 
-        <cn.edu.njupt.allgo.custom.MyDateSpinnerB
+        <cn.edu.njupt.allgo.widget.MyDateSpinnerB
             android:id="@+id/datespinnerB"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:visibility="gone" />
 
-        <cn.edu.njupt.allgo.custom.MyTimeSpinnerB
+        <cn.edu.njupt.allgo.widget.MyTimeSpinnerB
             android:id="@+id/timespinnerB"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

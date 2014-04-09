@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -110,7 +111,7 @@ public class HomeACTIVITY extends FragmentActivity{
 		
 		//actionbar和viewpager的初始化
 		mActionBar = getActionBar();
-        mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         
         //drawer 的初始化
         creatdrawer();
@@ -244,12 +245,10 @@ public class HomeACTIVITY extends FragmentActivity{
         mHomeTitles = getResources().getStringArray(R.array.home_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-        
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>
-        (this,R.layout.drawer_list_item,mHomeTitles));
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_list_item,mHomeTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         // enable ActionBar app icon to behave as action to toggle nav drawer
         mActionBar.setDisplayHomeAsUpEnabled(true);
@@ -272,6 +271,8 @@ public class HomeACTIVITY extends FragmentActivity{
             public void onDrawerOpened(View drawerView) {
                 mActionBar.setTitle(mDrawerTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()  此时打开抽屉
+                View v=mDrawerList.getChildAt(position);
+                v.setBackgroundColor(Color.GRAY);
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -284,6 +285,16 @@ public class HomeACTIVITY extends FragmentActivity{
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             selectItem(position);
+            if(position != 4){
+	            	for(int i=0;i<parent.getCount();i++){
+		            View v=parent.getChildAt(i);
+		            if (position == i) {
+		                v.setBackgroundColor(Color.GRAY);
+		            } else {
+		                v.setBackgroundColor(Color.TRANSPARENT);
+		            }
+		        }
+            }
             }
         }
         	
@@ -296,6 +307,7 @@ public class HomeACTIVITY extends FragmentActivity{
         if(position == 4) {
         	mDrawerList.setItemChecked(this.position, true);
         	setTitle(mHomeTitles[this.position]);
+        	mDrawerLayout.closeDrawer(mDrawerList);
         }else {
         	mDrawerList.setItemChecked(position, true);
         	setTitle(mHomeTitles[position]);

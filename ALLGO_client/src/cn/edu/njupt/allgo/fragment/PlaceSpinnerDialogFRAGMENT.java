@@ -1,7 +1,7 @@
 package cn.edu.njupt.allgo.fragment;
 
 import cn.edu.njupt.allgo.R;
-import cn.edu.njupt.allgo.custom.PlaceSpinner;
+import cn.edu.njupt.allgo.widget.PlaceSpinner;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;

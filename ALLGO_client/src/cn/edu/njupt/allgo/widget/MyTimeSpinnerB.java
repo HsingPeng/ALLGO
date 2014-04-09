@@ -1,4 +1,4 @@
-package cn.edu.njupt.allgo.custom;
+package cn.edu.njupt.allgo.widget;
 
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
@@ -13,14 +13,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
  
-public class MyTimeSpinnerA extends Spinner {
+public class MyTimeSpinnerB extends Spinner {
 	
-    public MyTimeSpinnerA(Context context) {
+    public MyTimeSpinnerB(Context context) {
         super(context);
         // TODO Auto-generated constructor stub
     }
  
-    public MyTimeSpinnerA(Context context, AttributeSet attrs) {
+    public MyTimeSpinnerB(Context context, AttributeSet attrs) {
         super(context, attrs);
         if (isInEditMode()) {
             return;
@@ -28,7 +28,7 @@ public class MyTimeSpinnerA extends Spinner {
         final Time time = new Time();
         time.setToNow();
         //为MyDateSpinner设置adapter，主要用于显示spinner的text值
-        MyTimeSpinnerA.this.setAdapter(new BaseAdapter() {
+        MyTimeSpinnerB.this.setAdapter(new BaseAdapter() {
         	private TextView text ;
         	
             @Override
@@ -52,9 +52,9 @@ public class MyTimeSpinnerA extends Spinner {
             @Override
             public View getView(int arg0, View arg1, ViewGroup arg2) {
                 // TODO Auto-generated method stub
-                text = new TextView(MyTimeSpinnerA.this.getContext());
+                text = new TextView(MyTimeSpinnerB.this.getContext());
                 text.setText(
-                		time.hour
+                		time.hour+3
                 		+":"
                 		+time.minute
                 		);
@@ -77,7 +77,7 @@ public class MyTimeSpinnerA extends Spinner {
 
                         // TODO Auto-generated method stub
                         //为MyDateSpinner动态设置adapter，主要用于修改spinner的text值
-						MyTimeSpinnerA.this.setAdapter(new BaseAdapter() {
+						MyTimeSpinnerB.this.setAdapter(new BaseAdapter() {
 							private TextView text ;
 							
                             @Override
@@ -101,7 +101,7 @@ public class MyTimeSpinnerA extends Spinner {
                             @Override
                             public View getView(int arg0, View arg1,
                                     ViewGroup arg2) {
-                            	text = new TextView(MyTimeSpinnerA.this
+                            	text = new TextView(MyTimeSpinnerB.this
                                         .getContext());
         						text.setText(
         								hourOfDay

@@ -2,14 +2,14 @@ package cn.edu.njupt.allgo;
 
 
 import cn.edu.njupt.allgo.R;
-import cn.edu.njupt.allgo.custom.MyDateSpinnerA;
-import cn.edu.njupt.allgo.custom.MyDateSpinnerB;
-import cn.edu.njupt.allgo.custom.MyTimeSpinnerA;
-import cn.edu.njupt.allgo.custom.MyTimeSpinnerB;
 import cn.edu.njupt.allgo.fragment.PlaceSpinnerDialogFRAGMENT;
 import cn.edu.njupt.allgo.logic.AddEventLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logicImpl.AddEventLogicImpl;
+import cn.edu.njupt.allgo.widget.MyDateSpinnerA;
+import cn.edu.njupt.allgo.widget.MyDateSpinnerB;
+import cn.edu.njupt.allgo.widget.MyTimeSpinnerA;
+import cn.edu.njupt.allgo.widget.MyTimeSpinnerB;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Rect;

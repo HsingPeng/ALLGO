@@ -1,4 +1,4 @@
-package cn.edu.njupt.allgo.custom;
+package cn.edu.njupt.allgo.widget;
 
 import android.content.Context;
 import android.util.Log;

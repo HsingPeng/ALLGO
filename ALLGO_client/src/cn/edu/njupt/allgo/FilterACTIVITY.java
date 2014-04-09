@@ -1,12 +1,12 @@
 package cn.edu.njupt.allgo;
 
 
-import cn.edu.njupt.allgo.custom.MyDateSpinnerA;
-import cn.edu.njupt.allgo.custom.MyDateSpinnerB;
-import cn.edu.njupt.allgo.custom.MyTimeSpinnerA;
-import cn.edu.njupt.allgo.custom.MyTimeSpinnerB;
-import cn.edu.njupt.allgo.custom.PlaceSpinner;
 import cn.edu.njupt.allgo.util.DensityUtil;
+import cn.edu.njupt.allgo.widget.MyDateSpinnerA;
+import cn.edu.njupt.allgo.widget.MyDateSpinnerB;
+import cn.edu.njupt.allgo.widget.MyTimeSpinnerA;
+import cn.edu.njupt.allgo.widget.MyTimeSpinnerB;
+import cn.edu.njupt.allgo.widget.PlaceSpinner;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;

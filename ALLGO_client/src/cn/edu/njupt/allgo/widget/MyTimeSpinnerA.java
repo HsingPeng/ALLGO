@@ -1,27 +1,26 @@
-package cn.edu.njupt.allgo.custom;
+package cn.edu.njupt.allgo.widget;
 
-import android.app.DatePickerDialog.OnDateSetListener;
+import android.app.TimePickerDialog;
+import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.format.Time;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.TimePicker;
  
-public class MyDateSpinnerA extends Spinner  {
+public class MyTimeSpinnerA extends Spinner {
 	
-    public MyDateSpinnerA(Context context) {
+    public MyTimeSpinnerA(Context context) {
         super(context);
         // TODO Auto-generated constructor stub
     }
  
-    public MyDateSpinnerA(Context context, AttributeSet attrs) {
+    public MyTimeSpinnerA(Context context, AttributeSet attrs) {
         super(context, attrs);
         if (isInEditMode()) {
             return;
@@ -29,7 +28,7 @@ public class MyDateSpinnerA extends Spinner  {
         final Time time = new Time();
         time.setToNow();
         //为MyDateSpinner设置adapter，主要用于显示spinner的text值
-        MyDateSpinnerA.this.setAdapter(new BaseAdapter() {
+        MyTimeSpinnerA.this.setAdapter(new BaseAdapter() {
         	private TextView text ;
         	
             @Override
@@ -40,7 +39,7 @@ public class MyDateSpinnerA extends Spinner  {
  
             @Override
             public Object getItem(int arg0) {
-                // TODO getItem
+                // TODO Auto-generated method stub
                 return text.getText().toString();
             }
  
@@ -49,23 +48,17 @@ public class MyDateSpinnerA extends Spinner  {
                 // TODO Auto-generated method stub
                 return 0;
             }
-            
-            
-            
+ 
             @Override
             public View getView(int arg0, View arg1, ViewGroup arg2) {
                 // TODO Auto-generated method stub
-                text = new TextView(MyDateSpinnerA.this.getContext());
-                text.setText(time.year
-                        + "年"
-                        + (time.month + 1)
-                        + "月"
-                        + time.monthDay
-                        + "日 "
-                        + MyDatePickerDialog.CaculateWeekDay(time.year,
-                                time.month+1, time.monthDay));
+                text = new TextView(MyTimeSpinnerA.this.getContext());
+                text.setText(
+                		time.hour
+                		+":"
+                		+time.minute
+                		);
                 text.setTextColor(Color.GRAY);
-                
                 return text;
             }
         });
@@ -75,17 +68,18 @@ public class MyDateSpinnerA extends Spinner  {
     public boolean performClick() {
         Time time = new Time();
         time.setToNow();
-        MyDatePickerDialog tpd = new MyDatePickerDialog(getContext(),
-                new OnDateSetListener() {
- 
-                    @Override
-                    public void onDateSet(DatePicker view, final int year,
-                            final int month, final int day) {
+        TimePickerDialog dialog2 = new TimePickerDialog(getContext(),
+				new OnTimeSetListener() {
+					@Override
+					public void onTimeSet(TimePicker view,final int hourOfDay,
+							final int minute) {
+						// TODO Auto-generated method stub
+
                         // TODO Auto-generated method stub
                         //为MyDateSpinner动态设置adapter，主要用于修改spinner的text值
-                        MyDateSpinnerA.this.setAdapter(new BaseAdapter() {
-                        	private TextView text ;
-                        	
+						MyTimeSpinnerA.this.setAdapter(new BaseAdapter() {
+							private TextView text ;
+							
                             @Override
                             public int getCount() {
                                 // TODO Auto-generated method stub
@@ -107,27 +101,20 @@ public class MyDateSpinnerA extends Spinner  {
                             @Override
                             public View getView(int arg0, View arg1,
                                     ViewGroup arg2) {
-                                // TODO Auto-generated method stub
-                            	
-                                text = new TextView(MyDateSpinnerA.this
+                            	text = new TextView(MyTimeSpinnerA.this
                                         .getContext());
-                                text.setText(year
-                                        + "年"
-                                        + (month + 1)
-                                        + "月"
-                                        + day
-                                        + "日 "
-                                        + MyDatePickerDialog.CaculateWeekDay(
-                                                year, month + 1, day));
-                                text.setTextColor(Color.BLACK);
-                                return text;
+        						text.setText(
+        								hourOfDay
+        		                		+":"
+        		                		+minute
+        		                		);
+        						text.setTextColor(Color.BLACK);
+        						return text ;
                             }
                         });
-                    }
- 
-                }, time.year, time.month, time.monthDay);
-        tpd.show();
+					}
+				},time.hour, time.minute, true);
+        dialog2.show();
         return true;
     }
-
 }

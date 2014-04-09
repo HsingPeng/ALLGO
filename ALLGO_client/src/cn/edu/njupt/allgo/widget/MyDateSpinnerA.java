@@ -1,4 +1,4 @@
-package cn.edu.njupt.allgo.custom;
+package cn.edu.njupt.allgo.widget;
 
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -14,14 +14,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
  
-public class MyDateSpinnerB extends Spinner  {
+public class MyDateSpinnerA extends Spinner  {
 	
-    public MyDateSpinnerB(Context context) {
+    public MyDateSpinnerA(Context context) {
         super(context);
         // TODO Auto-generated constructor stub
     }
  
-    public MyDateSpinnerB(Context context, AttributeSet attrs) {
+    public MyDateSpinnerA(Context context, AttributeSet attrs) {
         super(context, attrs);
         if (isInEditMode()) {
             return;
@@ -29,7 +29,7 @@ public class MyDateSpinnerB extends Spinner  {
         final Time time = new Time();
         time.setToNow();
         //为MyDateSpinner设置adapter，主要用于显示spinner的text值
-        MyDateSpinnerB.this.setAdapter(new BaseAdapter() {
+        MyDateSpinnerA.this.setAdapter(new BaseAdapter() {
         	private TextView text ;
         	
             @Override
@@ -55,17 +55,15 @@ public class MyDateSpinnerB extends Spinner  {
             @Override
             public View getView(int arg0, View arg1, ViewGroup arg2) {
                 // TODO Auto-generated method stub
-                text = new TextView(MyDateSpinnerB.this.getContext());
-                text.setText(
-                		time.year
+                text = new TextView(MyDateSpinnerA.this.getContext());
+                text.setText(time.year
                         + "年"
                         + (time.month + 1)
                         + "月"
                         + time.monthDay
                         + "日 "
                         + MyDatePickerDialog.CaculateWeekDay(time.year,
-                                time.month+1, time.monthDay)
-                		);
+                                time.month+1, time.monthDay));
                 text.setTextColor(Color.GRAY);
                 
                 return text;
@@ -85,7 +83,7 @@ public class MyDateSpinnerB extends Spinner  {
                             final int month, final int day) {
                         // TODO Auto-generated method stub
                         //为MyDateSpinner动态设置adapter，主要用于修改spinner的text值
-                        MyDateSpinnerB.this.setAdapter(new BaseAdapter() {
+                        MyDateSpinnerA.this.setAdapter(new BaseAdapter() {
                         	private TextView text ;
                         	
                             @Override
@@ -111,7 +109,7 @@ public class MyDateSpinnerB extends Spinner  {
                                     ViewGroup arg2) {
                                 // TODO Auto-generated method stub
                             	
-                                text = new TextView(MyDateSpinnerB.this
+                                text = new TextView(MyDateSpinnerA.this
                                         .getContext());
                                 text.setText(year
                                         + "年"

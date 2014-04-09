@@ -3,7 +3,7 @@ package cn.edu.njupt.allgo.fragment;
 import java.util.ArrayList;
 
 import cn.edu.njupt.allgo.adapter.MyViewAdapter;
-import cn.edu.njupt.allgo.custom.CustomViewPager;
+import cn.edu.njupt.allgo.widget.CustomViewPager;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;

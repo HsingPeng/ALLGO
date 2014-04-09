@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.adapter.MyViewAdapter;
-import cn.edu.njupt.allgo.custom.CustomViewPager;
 import cn.edu.njupt.allgo.fragment.child.ContactListFRAGMENT;
 import cn.edu.njupt.allgo.fragment.child.ChatListFRAGMENT;
+import cn.edu.njupt.allgo.widget.CustomViewPager;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;

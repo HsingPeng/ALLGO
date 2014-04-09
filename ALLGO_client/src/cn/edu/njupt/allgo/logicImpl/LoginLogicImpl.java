@@ -225,7 +225,7 @@ public class LoginLogicImpl implements LoginLogic {
         		refresh.refresh(null, 2);
         		}
         		SharedPreferences shared = context.getSharedPreferences("appdata",Context.MODE_PRIVATE);
-        		String host_url = shared.getString("host_url", "http://10.0.2.2:8080/ALLGO_SERVER/");
+        		String host_url = shared.getString("host_url", "http://10.0.2.2:8080/ALLGO_server/");
         		MyDeclare declare =(MyDeclare)context.getApplicationContext();
         		declare.setHost_url(host_url);
 				return null;

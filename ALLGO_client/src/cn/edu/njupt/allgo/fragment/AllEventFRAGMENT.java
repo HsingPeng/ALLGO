@@ -13,10 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.adapter.MyViewAdapter;
-import cn.edu.njupt.allgo.custom.CustomViewPager;
 import cn.edu.njupt.allgo.fragment.child.CommonEventFRAGMENT;
 import cn.edu.njupt.allgo.fragment.child.FriendsEventFRAGMENT;
 import cn.edu.njupt.allgo.vo.EventVo;
+import cn.edu.njupt.allgo.widget.CustomViewPager;
 
 public class AllEventFRAGMENT extends BaseFRAGMENT implements TabListener{
 	
@@ -49,7 +49,7 @@ public class AllEventFRAGMENT extends BaseFRAGMENT implements TabListener{
 
 	@Override
 	public void initActionBar() {
-		getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);  
+		getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     	getActivity().getActionBar().addTab(getActivity().getActionBar().newTab().setText("活动广场").setTabListener(this));
     	getActivity().getActionBar().addTab(getActivity().getActionBar().newTab().setText("好友的活动").setTabListener(this));
 	}

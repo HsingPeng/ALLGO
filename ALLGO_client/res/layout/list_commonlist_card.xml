@@ -28,12 +28,12 @@
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="50dp"
-            android:minHeight="50dp"
-            android:layout_marginRight="4dip"
-            android:scaleType="centerCrop"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_marginRight="4dip"
+            android:minHeight="50dp"
+            android:minWidth="50dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/default_head" />
 
         <TextView
@@ -42,10 +42,9 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textView_username"
             android:layout_alignParentTop="true"
+            android:singleLine="true"
             android:text="活动的标题"
-            android:textSize="22sp"
-            android:singleLine="true" />
-
+            android:textSize="22sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -58,9 +57,9 @@
 
         <TextView
             android:id="@+id/textView_place"
-            android:layout_marginTop="4dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dip"
             android:layout_toRightOf="@+id/imageView2"
             android:text="活动地点"
             android:textColor="#666666"
@@ -73,7 +72,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:src="@drawable/icon_act_address" />
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -97,10 +95,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="4dip"
             android:layout_toRightOf="@+id/imageView3"
             android:text="明天上午8点"
             android:textColor="#777777"
-            android:layout_marginTop="4dip"
             android:textSize="16sp" />
 
         <ImageView
@@ -110,57 +108,46 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:src="@drawable/icon_act_time" />
-
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:gravity="center"
-        android:layout_centerVertical="true"
         android:layout_below="@+id/relativeLayout_card_4"
+        android:layout_centerVertical="true"
+        android:gravity="center"
         android:layout_marginTop="4dp" >
-
-        <TextView
-            android:id="@+id/textView_intro_UName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:id="@+id/textView_commentscount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="5.0dip"
-            android:layout_toRightOf="@+id/textView_intro_UName"
-            android:text="0" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/textView_commentscount"
-            android:text="评论" />
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
+            android:layout_margin="4dip"
             android:src="@drawable/icon_follower" />
 
         <TextView
             android:id="@+id/textView_followerscount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/imageView4"
+            android:textColor="@color/font_value"
             android:text="0" />
 
-    </RelativeLayout>
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dip"
+            android:src="@drawable/icon_comments" />
+
+        <TextView
+            android:id="@+id/textView_commentscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/font_value"
+            android:text="0" />
+
+    </LinearLayout>
 
 </RelativeLayout>

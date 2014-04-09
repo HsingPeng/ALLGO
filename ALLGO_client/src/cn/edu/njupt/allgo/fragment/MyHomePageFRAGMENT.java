@@ -13,10 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.adapter.MyViewAdapter;
-import cn.edu.njupt.allgo.custom.CustomViewPager;
 import cn.edu.njupt.allgo.fragment.child.IntroFRAGMENT;
 import cn.edu.njupt.allgo.fragment.child.MyEventFRAGMENT;
 import cn.edu.njupt.allgo.fragment.child.PastEventFRAGMENT;
+import cn.edu.njupt.allgo.widget.CustomViewPager;
 
 public class MyHomePageFRAGMENT extends BaseFRAGMENT implements TabListener {
 

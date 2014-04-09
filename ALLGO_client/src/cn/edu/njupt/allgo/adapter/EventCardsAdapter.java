@@ -65,7 +65,7 @@ public  class EventCardsAdapter extends ArrayAdapter<EventVo> {
 		viewHolder.textView_place.setText(event.getPlace());
 		viewHolder.textView_outline.setText(event.getOutline());
 		viewHolder.textView_time.setText(ChangeDateUtil.showDate(event.getStartdate()));
-		viewHolder.textView_followerscount.setText(event.getFollowerscount() + "人" );
+		viewHolder.textView_followerscount.setText(""+event.getFollowerscount());
 		viewHolder.textView_commentscount.setText("" + event.getCommentscount() );
 		
 		return view;
