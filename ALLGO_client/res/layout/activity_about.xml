@@ -5,7 +5,7 @@
     android:layout_height="wrap_content" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/imageView_eventlist_userhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -16,7 +16,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1"
+        android:layout_below="@+id/imageView_eventlist_userhead"
         android:layout_centerHorizontal="true"
         android:text="都来"
         android:textSize="24sp" />
@@ -33,7 +33,7 @@
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/TextView01"
+        android:id="@+id/textView_event_position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/TextView03"
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/TextView01"
+        android:layout_below="@+id/textView_event_position"
         android:layout_marginTop="36dp"
         android:text="软件版本:v0.6"
         android:textColor="#666666"

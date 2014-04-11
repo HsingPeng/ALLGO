@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-   <drawable name="darkgray">#808080FF </drawable> 
+   <drawable name="darkgray">#FF808080</drawable> 
    <drawable name="white">#FFFFFFFF</drawable>
    <drawable name="tab_unselected">#FFeaeaea</drawable>
    <drawable name="tab_selected">#FFf4842d</drawable>
@@ -9,8 +9,11 @@
    <drawable name="tab_unselected_pressed">#FFd1d0d0</drawable>
    <drawable name="tab_selected_pressed">#FFfa8700</drawable>
    <drawable name="tab_selected_focused">#FFf18403</drawable>
-   <color name="font_value">#ff888271</color>
-   <color name="bgColor2">#ffa00e</color>
+   <drawable name="bgColor">#e2e2e2</drawable>
+   <color name="transparent_background">#00ffffff</color>
+   <color name="font_value_grey">#ff888271</color>
+   <color name="font_value">#777777</color>
+   <color name="frontColor">#ffa00e</color>
 	<color name="white">#FFFFFFFF</color>
 	<color name="selected">#ffff8a00</color>
 </resources>

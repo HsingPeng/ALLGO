@@ -17,7 +17,7 @@ import android.util.Log;
 import cn.edu.njupt.allgo.application.MyDeclare;
 import cn.edu.njupt.allgo.logic.AddEventLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
-import cn.edu.njupt.allgo.util.ChangeDateUtil;
+import cn.edu.njupt.allgo.util.DateUtil;
 import cn.edu.njupt.allgo.util.NetUtil;
 import cn.edu.njupt.allgo.util.NetUtil.NetCallBack;
 import cn.edu.njupt.allgo.vo.EventVo;
@@ -58,11 +58,11 @@ public class AddEventLogicImpl implements AddEventLogic {
 			
 		});
 		
-		startdate = ChangeDateUtil.changeDate(startdate.replaceAll(" [^a]*\\-", ""));
-		startdate = ChangeDateUtil.saveDate(startdate);
+		startdate = DateUtil.changeDate(startdate.replaceAll(" [^a]*\\-", ""));
+		startdate = DateUtil.saveDate(startdate);
 		if(enddate != null){
-			enddate = ChangeDateUtil.changeDate(enddate.replaceAll(" [^a]*\\-", ""));
-			enddate = ChangeDateUtil.saveDate(enddate);
+			enddate = DateUtil.changeDate(enddate.replaceAll(" [^a]*\\-", ""));
+			enddate = DateUtil.saveDate(enddate);
 		}
 		
 		netUtil.add("outline", outline);

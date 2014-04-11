@@ -3,9 +3,9 @@
     android:id="@+id/RelativeLayout_card_0"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/card_background_white"
+    android:background="@drawable/bg_card"
     android:orientation="vertical"
-    android:padding="12dp" >
+    android:padding="8dp" >
 
     <TextView
         android:id="@+id/textView_unread_RCategroy"
@@ -36,31 +36,14 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout_card_4"
+    <TextView
+        android:id="@+id/textView_unread_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/relativeLayout_unread_3"
-        android:layout_below="@+id/relativeLayout_unread_3"
-        android:layout_marginTop="4dp" >
-
-        <TextView
-            android:id="@+id/textView_unread_showtime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="时间 :"
-            android:textColor="#777777"
-            android:textSize="12sp"
-             />
-
-        <TextView
-            android:id="@+id/textView_unread_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/textView_unread_showtime"
-            android:text="明天上午8点"
-            android:textColor="#777777"
-            android:textSize="12sp" />
-    </RelativeLayout>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="明天上午8点"
+        android:textColor="#777777"
+        android:textSize="12sp" />
 
 </RelativeLayout>

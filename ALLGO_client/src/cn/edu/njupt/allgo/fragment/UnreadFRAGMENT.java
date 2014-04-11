@@ -11,6 +11,7 @@ import cn.edu.njupt.allgo.adapter.UnreadCardsAdapter;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logic.UnreadLogic;
 import cn.edu.njupt.allgo.logicImpl.UnreadLogicImpl;
+import cn.edu.njupt.allgo.util.ArrayListUtil;
 import cn.edu.njupt.allgo.vo.UnreadVo;
 import android.app.ActionBar;
 import android.os.Bundle;
@@ -105,12 +106,16 @@ public class UnreadFRAGMENT extends BaseFRAGMENT implements PullToRefreshAttache
 			if(result != null){
 				unreadDate.clear();
 				unreadDate.addAll(0,(ArrayList<UnreadVo>)result);
+				ArrayListUtil.removeDuplicate(unreadDate);
+				ArrayListUtil.sortUnreadVo(unreadDate);
 				UnreadcardsAdapter.notifyDataSetChanged();
 				}
 			break;
 		case 2:
 			mPullToRefreshAttacher.setRefreshComplete();
             unreadDate.addAll(0,(ArrayList<UnreadVo>)result); 
+            ArrayListUtil.removeDuplicate(unreadDate);
+			ArrayListUtil.sortUnreadVo(unreadDate);
             UnreadcardsAdapter.notifyDataSetChanged();
 			break;
 		case 3:			//从数据库更新内容

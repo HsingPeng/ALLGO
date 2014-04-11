@@ -66,7 +66,7 @@ public class CommonEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefr
 		// TODO Auto-generated method stub
 		super.onCreateView(inflater, container, savedInstanceState) ;
 		setFragmentFlag("CommonEventFRAGMENT");
-		View view = inflater.inflate(R.layout.fragment_commonevent, null);
+		View view = inflater.inflate(R.layout.fragment_event, null);
 		return view;
 	}
 
@@ -79,7 +79,7 @@ public class CommonEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefr
 
 	private void setView() {
 		 
-		listView = (ListView)getView().findViewById(R.id.listView_common);
+		listView = (ListView)getView().findViewById(R.id.listView_event);
 	     mPullToRefreshAttacher = ((HomeACTIVITY)getActivity())
                  .getPullToRefreshAttacher();
 
@@ -213,17 +213,18 @@ public class CommonEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefr
 		if(result != null){
 			eventsData.addAll(0,(ArrayList<EventVo>)result);
 			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
 			eventcardsAdapter.notifyDataSetChanged();
 			}
 		break;
 		case 2:		//下拉刷新
 			eventsData.addAll(0,(ArrayList<EventVo>)result);
 			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
             //int count = result.size();
 			if(page == 1){page++;}
             eventcardsAdapter.notifyDataSetChanged();
             mPullToRefreshAttacher.setRefreshComplete();
-            //listView.setSelection(count) ;
             if(listfootflag){
             	listView.removeFooterView(moreView); //移除底部视图
             	listfootflag = false ;
@@ -233,6 +234,7 @@ public class CommonEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefr
 		case 3:		//底部刷新
 			eventsData.addAll((ArrayList<EventVo>)result); 
 			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
         	eventcardsAdapter.notifyDataSetChanged();
 		    moreView.setVisibility(View.GONE); 
 		    page++;

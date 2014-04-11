@@ -60,7 +60,7 @@ public class MyEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefreshA
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState) ;
 		setFragmentFlag("MyEventFRAGMENT");
-		View view = inflater.inflate(R.layout.fragment_myevent, null);
+		View view = inflater.inflate(R.layout.fragment_event, null);
 		return view;
 	}
 
@@ -74,7 +74,7 @@ public class MyEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefreshA
 	private void setView() {
 
 		 
-		listView = (ListView)getView().findViewById(R.id.listView_myevent);
+		listView = (ListView)getView().findViewById(R.id.listView_event);
 	     mPullToRefreshAttacher = ((HomeACTIVITY)getActivity())
                  .getPullToRefreshAttacher();
 
@@ -164,12 +164,14 @@ public class MyEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefreshA
 		if(result != null){
 			eventsData.addAll(0,(ArrayList<EventVo>)result);
 			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
 			eventcardsAdapter.notifyDataSetChanged();
 			}
 		break;
 		case 2:		//下拉刷新
 			eventsData.addAll(0,(ArrayList<EventVo>)result);
 			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
             //int count = result.size();
 			if(page == 1){page++;}
             eventcardsAdapter.notifyDataSetChanged();
@@ -184,6 +186,7 @@ public class MyEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefreshA
 		case 3:		//底部刷新
 			eventsData.addAll((ArrayList<EventVo>)result); 
 			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
         	eventcardsAdapter.notifyDataSetChanged();
 		    moreView.setVisibility(View.GONE); 
 		    page++;

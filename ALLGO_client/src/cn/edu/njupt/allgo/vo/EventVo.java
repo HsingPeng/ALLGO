@@ -233,13 +233,15 @@ public class EventVo implements Serializable {
 	}
 
 
-	//测试方法
+	/**
+	 * 测试方法
+	 * @param test
+	 */
     public EventVo(int test) {
     	this(11003617 + test,"去栖霞山爬山",123456,test + "千军万马",
     			"Mon Feb 15 08:00:00 GMT+08:00 2014",null,"去栖霞山爬山","栖霞山",
     			"江苏省 南京市 栖霞区","Mon Feb 13 08:00:00 GMT+08:00 2013","旅游",0,
     			0,0);
-
     }  
 
 

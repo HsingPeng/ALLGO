@@ -3,7 +3,7 @@ package cn.edu.njupt.allgo.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.edu.njupt.allgo.util.ChangeDateUtil;
+import cn.edu.njupt.allgo.util.DateUtil;
 import cn.edu.njupt.allgo.vo.UnreadVo;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -58,7 +58,7 @@ public  class UnreadCardsAdapter extends ArrayAdapter<UnreadVo> {
 		}
 		viewHolder.textView_unread_RCategroy.setText(setRCategroy(unread.getRcategroy()));
 		viewHolder.textView_unread_Annotation.setText(unread.getAnnotation());
-		viewHolder.textView_unread_time.setText(ChangeDateUtil.showDate(unread.getTime()));
+		viewHolder.textView_unread_time.setText(DateUtil.showDate(unread.getTime()));
 		
 		return view;
 		

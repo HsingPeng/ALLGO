@@ -1,31 +1,28 @@
 package cn.edu.njupt.allgo;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
+import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 import cn.edu.njupt.allgo.fragment.AddCommentDialogFRAGMENT;
-import cn.edu.njupt.allgo.fragment.LoginDialogFRAGMENT;
-import cn.edu.njupt.allgo.fragment.PlaceSpinnerDialogFRAGMENT;
 import cn.edu.njupt.allgo.fragment.UpdateEventDialogFRAGMENT;
 import cn.edu.njupt.allgo.logic.EventPageLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logicImpl.EventPageLogicImpl;
-import cn.edu.njupt.allgo.util.ChangeDateUtil;
+import cn.edu.njupt.allgo.util.DateUtil;
 import cn.edu.njupt.allgo.vo.EventAddVo;
 import cn.edu.njupt.allgo.vo.EventCommentVo;
 import cn.edu.njupt.allgo.vo.EventVo;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
@@ -35,11 +32,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
+public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace , PullToRefreshAttacher.OnRefreshListener{
 	
 	
 	private TextView outlineshow;
@@ -56,16 +54,17 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 	private LinearLayout LinearLayout_EventAdd;
 	private LinearLayout LinearLayout_EventComments;
 	private EventVo eventdata;
-	private TextView TextView03;
 	private TextView TextView_eventpage_UName;
-	//private List<Button> buttonSet = new ArrayList<Button>() ;		//收集评论里的button
-	//private List<EventCommentVo> eventCommentSet = new ArrayList<EventCommentVo>() ;	//收集评论对象
 	
 	private ProgressDialog progressDialog;
 	private EventPageLogic eventPageLogic ;
 	private Button Button_comment;
 	private boolean isFollow = false;
-	private RefreshInterFace refresh;
+	private TextView textView_eventpage_position;
+	private LinearLayout linearLayout_eventpage_endtime;
+	private PullToRefreshAttacher mPullToRefreshAttacher;
+	private PullToRefreshLayout ptrLayout;
+	private ImageView imageView_eventpage_when;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +83,6 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 		outlineshow = (TextView) findViewById(R.id.outlineshow);
 		textView_eventpage_StartDate = (TextView) findViewById(R.id.textView_eventpage_StartDate);
 		TextView_EndDate = (TextView) findViewById(R.id.TextView_EndDate);
-		TextView03 = (TextView) findViewById(R.id.TextView03);
 		textView_eventpage_place = (TextView) findViewById(R.id.textView_eventpage_place);
 		TextView_ECategoryName = (TextView) findViewById(R.id.TextView_ECategoryName);
 		TextView_Visible = (TextView) findViewById(R.id.TextView_Visible);
@@ -93,10 +91,17 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 		TextView_eventpage_UName = (TextView) findViewById(R.id.TextView_eventpage_UName);
 		textView_eventpage_followerscount = (TextView) findViewById(R.id.textView_eventpage_followerscount);
 		textView_eventpage_commentscount = (TextView) findViewById(R.id.textView_eventpage_commentscount);
+		textView_eventpage_position = (TextView) findViewById(R.id.TextView_eventpage_position);
 		button_follow = (Button) findViewById(R.id.button_follow);
 		Button_comment = (Button) findViewById(R.id.Button_comment);
+		imageView_eventpage_when = (ImageView) findViewById(R.id.imageView_eventpage_when);
 		LinearLayout_EventAdd = (LinearLayout) findViewById(R.id.LinearLayout_EventAdd);
 		LinearLayout_EventComments = (LinearLayout) findViewById(R.id.LinearLayout_EventComments);
+		linearLayout_eventpage_endtime = (LinearLayout) findViewById(R.id.linearLayout_eventpage_endtime);
+		ptrLayout = (PullToRefreshLayout) findViewById(R.id.ptr_layout);
+		
+		mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
+		ptrLayout.setPullToRefreshAttacher(mPullToRefreshAttacher, this);
 		
 		button_follow.setOnClickListener(new View.OnClickListener() {
 			
@@ -129,30 +134,80 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 		
 	}
 	
+	//检测活动创建者是不是用户
+	private void isUpZhu() {
+		SharedPreferences share = EventPageACTIVITY.this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+		int uid = share.getInt("uid", -1);
+		if (uid == eventdata.getUid()){
+			setFollowButton();
+			button_follow.setTextColor(Color.GRAY);
+			button_follow.setClickable(false);
+		}
+		
+	}
+
+	private void setFollowButton(){
+		button_follow.setText("已加入");
+		Drawable left = getResources().getDrawable(R.drawable.icon_like_red) ;
+		left.setBounds(0, 0, left.getIntrinsicWidth(), left.getIntrinsicHeight());
+		button_follow.setCompoundDrawables(left, null, null, null);
+	}
+	
+	private void setUnFollowButton(){
+		button_follow.setText("我要加入");
+		Drawable left = getResources().getDrawable(R.drawable.icon_like) ;
+		left.setBounds(0, 0, left.getIntrinsicWidth(), left.getIntrinsicHeight());
+		button_follow.setCompoundDrawables(left, null, null, null);
+	}
+	
 	private void inflaterEvent() {
 		Intent intent=getIntent();
 		eventdata = (EventVo)intent.getSerializableExtra("EventData");
-		refresh = (RefreshInterFace) intent.getSerializableExtra("context");
 		outlineshow.setText(eventdata.getOutline()); 
-		textView_eventpage_StartDate.setText(ChangeDateUtil.showDate(eventdata.getStartdate()));
+		textView_eventpage_StartDate.setText(DateUtil.showDate(eventdata.getStartdate()));
 		if(eventdata.getEnddate() != null&&!eventdata.getEnddate().equals("")) {
-			TextView_EndDate.setText(ChangeDateUtil.showDate(eventdata.getEnddate()));
+			TextView_EndDate.setText(DateUtil.showDate(eventdata.getEnddate()));
 		}else{
-			TextView_EndDate.setVisibility(View.GONE);
-			TextView03.setVisibility(View.GONE);
+			linearLayout_eventpage_endtime.setVisibility(View.GONE);
 		}
 		textView_eventpage_place.setText(eventdata.getPlace());
 		TextView_ECategoryName.setText(eventdata.getEcategroyname());
 		TextView_Visible.setText((eventdata.getVisible() == 0)?"所有人":"仅好友");
 		TextView_eventpage_Content.setText(eventdata.getContent());
-		TextView_eventpage_Dateline.setText(ChangeDateUtil.showDate(eventdata.getDateline()));
+		TextView_eventpage_Dateline.setText(DateUtil.showDate(eventdata.getDateline()));
 		TextView_eventpage_UName.setText(eventdata.getUname());
 		textView_eventpage_followerscount.setText(eventdata.getFollowerscount() + "人");
 		textView_eventpage_commentscount.setText(eventdata.getCommentscount() + "");
+		textView_eventpage_position.setText(eventdata.getPosition().split(" ")[0]+
+				"省 "+eventdata.getPosition().split(" ")[1]+"市 "+eventdata.getPosition().split(" ")[2]);
+		imageView_eventpage_when.setImageResource(setWhenImage(eventdata.getStartdate(),eventdata.getEnddate()));
+		
+		isUpZhu();
 		
 	}
-	
 
+	/**
+	 * 动态设置丝带图片
+	 * @param startdate
+	 * @param enddate
+	 * @return
+	 */
+	private int setWhenImage(String startdate, String enddate) {
+		int image = 1;
+		switch(DateUtil.judgeDate(startdate, enddate)){
+		case 1:
+			image =  R.drawable.silk_riband_red_past;
+			break;
+		case 2:
+			image =  R.drawable.silk_riband_blue_being;
+			break;
+		case 3:
+			image =  R.drawable.silk_riband_green_goingto;
+			break;
+		}
+		return image;
+	}
+	
 	/**
 	 * 填充活动补充和评论
 	 */
@@ -162,7 +217,7 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 		
 		addEventCommentVo(new EventCommentVo(21300130, 54321, "完美猫", eventdate.getEid(), "Mon Feb 15 09:30:00 GMT+08:00 2014", 0, null, "好的好的！"));
 		addEventCommentVo(new EventCommentVo(21300131, 654321, "PINK", eventdate.getEid(), "Mon Feb 15 10:30:00 GMT+08:00 2014", 54321, "完美猫", "好的好的！"));*/
-		
+		mPullToRefreshAttacher.setRefreshing(true);
 		eventPageLogic.getEventDetails(eventdata.getEid());
 		
 	}
@@ -177,10 +232,14 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 		TextView TextView_eventadd_Content = (TextView)layout.findViewById(R.id.TextView_eventadd_Content);
 		TextView TextView_eventadd_AddTime = (TextView)layout.findViewById(R.id.TextView_eventadd_AddTime);
 		TextView_eventadd_Content.setText(arg0.getContent());
-		TextView_eventadd_AddTime.setText(ChangeDateUtil.showDate(arg0.getAddtime()));
+		TextView_eventadd_AddTime.setText(DateUtil.showDate(arg0.getAddtime()));
 		LinearLayout_EventAdd.addView(layout);
 	}
 
+	/**
+	 * 添加活动评论
+	 * @param arg0
+	 */
 	private void addEventCommentVo(EventCommentVo arg0) {
 		LayoutInflater inflater = getLayoutInflater();	// 通过inflate方法将layout转化为view
 		View layout = inflater.inflate(R.layout.list_eventcomments, null);
@@ -195,7 +254,7 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 			public void onClick(View v) {
 				//显示评论窗口
 				EventCommentVo i = (EventCommentVo)v.getTag();
-				
+
 				SharedPreferences share = EventPageACTIVITY.this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
 				AddCommentDialogFRAGMENT newFragment = AddCommentDialogFRAGMENT.newInstance("addComment");
 				newFragment.setValue(share.getInt("uid", -1),eventdata.getEid(),share.getString("uname", ""),i.getUid(),i.getUname(),eventPageLogic);
@@ -203,9 +262,6 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 		        
 			}
 		});
-		
-		//buttonSet.add(button_comments);
-		//eventCommentSet.add(arg0);
 		
 		textView_eventcomments_UName.setText(arg0.getUname() + ":");
 		
@@ -215,12 +271,25 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 			textView_eventcomments_ReplyUName.setVisibility(View.GONE);
 		}
 		textView_eventcomments_Texts.setText(arg0.getTexts());
-		TextView_eventcomments_AddTime.setText(ChangeDateUtil.showDate(arg0.getSendtime()));
+		TextView_eventcomments_AddTime.setText(DateUtil.showDate(arg0.getSendtime()));
 		LinearLayout_EventComments.addView(layout);
 	}
 	
+	/**
+	 * 清空所有补充
+	 */
+	private void removeAdd(){
+		LinearLayout_EventAdd.removeAllViews();
+		}
 	
-	//添加actionbar菜单
+	/**
+	 * 清空所有评论
+	 */
+	private void removeComments(){
+		LinearLayout_EventComments.removeAllViews();
+	}
+	
+		//添加actionbar菜单
 		@Override
 	    public boolean onCreateOptionsMenu(Menu menu) {
 	           // TODO Auto-generated method stub
@@ -240,17 +309,8 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upIntent = new Intent(this, HomeACTIVITY.class);
-                if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-                    TaskStackBuilder.from(this)
-                            //如果这里有很多原始的Activity,它们应该被添加在这里
-                            .addNextIntent(upIntent)
-                            .startActivities();
-                    finish();
-                } else {
-                    NavUtils.navigateUpTo(this, upIntent);
-                }
-                return true;
+                finish();
+                break;
         }
 		if(item.getTitle().equals("修改")) {
 			//showDialog ;
@@ -346,6 +406,10 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 		public void refresh(Object result, int kind) {
 			switch(kind){
 			case 1:		//添加活动补充
+				if(mPullToRefreshAttacher.isRefreshing()){
+					mPullToRefreshAttacher.setRefreshComplete();
+				}
+				removeAdd();
 				List<EventAddVo> list1 = (ArrayList<EventAddVo>)result ;
 				for(EventAddVo eventAdd : list1){
 					addEventAddVo(eventAdd);
@@ -353,6 +417,10 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 				closeProgressDialog();
 				break;
 			case 2:		//添加活动评论
+				if(mPullToRefreshAttacher.isRefreshing()){
+					mPullToRefreshAttacher.setRefreshComplete();
+				}
+				removeComments();
 				List<EventCommentVo> list2 = (ArrayList<EventCommentVo>)result ;
 				for(EventCommentVo eventComment : list2){
 					addEventCommentVo(eventComment);
@@ -369,13 +437,13 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 				break;
 			case 4:
 				Toast.makeText(this, "加入成功", Toast.LENGTH_SHORT).show();
-				button_follow.setText("已加入");
+				setFollowButton();
 				isFollow = true;
 				closeProgressDialog();
 				break;
 			case 5:
 				Toast.makeText(this, "取消加入", Toast.LENGTH_SHORT).show();
-				button_follow.setText("我要加入");
+				setUnFollowButton();
 				isFollow = false;
 				closeProgressDialog();
 				break;
@@ -401,8 +469,17 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace{
 				startActivity(intent);
 				finish();
 				break;
+			case 10:	//获取跟随用户
+				
+				break;
 			}
 			
+		}
+
+		@Override
+		public void onRefreshStarted(View view) {
+			eventPageLogic.getEventDetails(eventdata.getEid());
+			imageView_eventpage_when.setImageResource(setWhenImage(eventdata.getStartdate(),eventdata.getEnddate()));
 		}
 		
 }

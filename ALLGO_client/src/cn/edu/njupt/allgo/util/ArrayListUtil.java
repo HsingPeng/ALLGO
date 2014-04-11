@@ -41,8 +41,11 @@ public class ArrayListUtil {
 	 	      }
 	 	    }
 	 	}
-	
-	 //去除重复
+
+	/**
+	 * 去除重复
+	 * @param list
+	 */
     public static <E> void removeDuplicate(ArrayList<E> list) {
     	   for ( int i = 0 ; i < list.size() - 1 ; i ++ ) {
     	     for ( int j = list.size() - 1 ; j > i; j -- ) {
@@ -50,9 +53,6 @@ public class ArrayListUtil {
     	         list.remove(j);
     	       }
     	      }
-    	    }
+    	   }
     	}
-    
-
-	
 }

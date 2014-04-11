@@ -183,6 +183,7 @@ public class FilterACTIVITY extends BaseActivity {
 					intent.putExtra("StartTimeRangB", dateB+"-"+timeB);
 					}
 					startActivity(intent);
+					finish();
 				}else{
 					Toast.makeText(FilterACTIVITY.this, "未选择任何条件", Toast.LENGTH_SHORT).show();
 				}

@@ -1,61 +1,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_marginLeft="4sp"
-    android:layout_marginRight="4sp"
-         >
+    android:layout_margin="4sp" >
 
     <LinearLayout
-        android:id="@+id/LinearLayout02"
+        android:id="@+id/LinearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="4dp"
-        android:orientation="vertical" >
+        android:layout_marginTop="4dp" >
 
         <TextView
             android:id="@+id/TextView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="补充："
-            android:textSize="12sp"
-            android:textColor="#46a5dc" />
+            android:text="补充:"
+            android:textColor="@color/font_value" />
 
         <TextView
             android:id="@+id/TextView_eventadd_Content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="我就是补充内容" />
+            android:textColor="@color/font_value"
+            android:text="我就是补充内容我就是补充内容我就是补充内容我就是补充内容我就是补充内容我就是补充内容我就是补充内容" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/LinearLayout03"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LinearLayout02"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="4dp"
-		 >
-
-        <TextView
-            android:id="@+id/TextView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="补充时间："
-            android:textColor="#777777"
-            android:textSize="12sp" />
+        android:layout_below="@+id/LinearLayout1"
+        android:layout_marginTop="4dp" >
 
         <TextView
             android:id="@+id/TextView_eventadd_AddTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:text="2014年2月10日"
-            android:textColor="#777777"
+            android:textColor="@color/font_value"
             android:textSize="12sp" />
     </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.0px"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/LinearLayout03"
+        android:background="#ffdfdfdf"
+        android:focusable="false" />
 
 </RelativeLayout>

@@ -62,7 +62,7 @@ public class PastEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefres
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState) ;
 		setFragmentFlag("PastEventFRAGMENT");
-		View view = inflater.inflate(R.layout.fragment_pastevent, null);
+		View view = inflater.inflate(R.layout.fragment_event, null);
 		return view;
 	}
 
@@ -76,7 +76,7 @@ public class PastEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefres
 	private void setView() {
 
 		 
-		listView = (ListView)getView().findViewById(R.id.listView_pastevent);
+		listView = (ListView)getView().findViewById(R.id.listView_event);
 	     mPullToRefreshAttacher = ((HomeACTIVITY)getActivity())
                  .getPullToRefreshAttacher();
 
@@ -166,12 +166,14 @@ public class PastEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefres
 		if(result != null){
 			eventsData.addAll(0,(ArrayList<EventVo>)result);
 			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
 			eventcardsAdapter.notifyDataSetChanged();
 			}
 		break;
 		case 2:		//下拉刷新
 			eventsData.addAll(0,(ArrayList<EventVo>)result);
 			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
             //int count = result.size();
 			if(page == 1){page++;}
             eventcardsAdapter.notifyDataSetChanged();
@@ -186,6 +188,7 @@ public class PastEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefres
 		case 3:		//底部刷新
 			eventsData.addAll((ArrayList<EventVo>)result); 
 			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
         	eventcardsAdapter.notifyDataSetChanged();
 		    moreView.setVisibility(View.GONE); 
 		    page++;

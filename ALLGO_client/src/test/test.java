@@ -16,7 +16,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.util.LogUtils;
 
-import cn.edu.njupt.allgo.util.ChangeDateUtil;
+import cn.edu.njupt.allgo.util.DateUtil;
 import cn.edu.njupt.allgo.vo.EventVo;
 import cn.edu.njupt.allgo.vo.FriendEventVo;
 import android.test.AndroidTestCase;
@@ -29,9 +29,24 @@ import android.util.Log;
  */
 public class test extends AndroidTestCase {
 	
+	public void test9(){
+		String ss= "2014年4月10日10:8";
+		System.out.println(DateUtil.changeDate(ss));
+	}
+	
+	public void test8(){
+		/*long day=l/(24*60*60*1000);
+		long hour=(l/(60*60*1000)-day*24);
+		long min=((l/(60*1000))-day*24*60-hour*60);
+		long s=(l/1000-day*24*60*60-hour*60*60-min*60);*/
+
+		//String ss = "Fri Apr 11 08:00:00 GMT+08:00 2014";
+		String ss= "Mon Feb 15 08:00:00 CST 2014";
+		System.out.println(DateUtil.smartDate(ss,""));
+	}
 	public void test7(){
 		String ss = "周一 3月 31 11:58:00 GMT+08:00 2014";
-		ss = ChangeDateUtil.saveDate(ss);
+		ss = DateUtil.saveDate(ss);
 		Log.i("Http",ss);
 	}
 	

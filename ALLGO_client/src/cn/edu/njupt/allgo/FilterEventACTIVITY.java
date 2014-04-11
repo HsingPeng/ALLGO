@@ -11,7 +11,8 @@ import cn.edu.njupt.allgo.fragment.child.CommonEventFRAGMENT;
 import cn.edu.njupt.allgo.logic.CommonEventLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logicImpl.CommonEventLogicImpl;
-import cn.edu.njupt.allgo.util.ChangeDateUtil;
+import cn.edu.njupt.allgo.util.ArrayListUtil;
+import cn.edu.njupt.allgo.util.DateUtil;
 import cn.edu.njupt.allgo.vo.EventVo;
 import android.app.Activity;
 import android.content.Intent;
@@ -56,12 +57,12 @@ public class FilterEventACTIVITY extends BaseActivity implements PullToRefreshAt
 		ecategoryname = intent.getStringExtra("ecategoryname");
 		StartTimeRangA = intent.getStringExtra("StartTimeRangA");
 		StartTimeRangB = intent.getStringExtra("StartTimeRangB");
-		setContentView(R.layout.fragment_commonevent);
+		setContentView(R.layout.fragment_event);
 		setView();
 		commonEventLogic = new  CommonEventLogicImpl(this , this) ;
 		if(StartTimeRangA != null){
-		StartTimeRangA = ChangeDateUtil.saveDate(ChangeDateUtil.changeDate(StartTimeRangA.replaceAll(" [^a]*\\-", "")));
-		StartTimeRangB = ChangeDateUtil.saveDate(ChangeDateUtil.changeDate(StartTimeRangB.replaceAll(" [^a]*\\-", "")));
+		StartTimeRangA = DateUtil.saveDate(DateUtil.changeDate(StartTimeRangA.replaceAll(" [^a]*\\-", "")));
+		StartTimeRangB = DateUtil.saveDate(DateUtil.changeDate(StartTimeRangB.replaceAll(" [^a]*\\-", "")));
 		}
 		Log.i("Http","Filter==>" + place + ecategoryname + StartTimeRangA + StartTimeRangB);
 		commonEventLogic.getEvent(1, 15,  place, ecategoryname , StartTimeRangA, StartTimeRangB);
@@ -69,7 +70,7 @@ public class FilterEventACTIVITY extends BaseActivity implements PullToRefreshAt
 
 	private void setView() {
 		 
-		listView = (ListView)findViewById(R.id.listView_common);
+		listView = (ListView)findViewById(R.id.listView_event);
 	     mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
 
          mPullToRefreshAttacher.addRefreshableView(listView, this);
@@ -174,11 +175,15 @@ public class FilterEventACTIVITY extends BaseActivity implements PullToRefreshAt
 		case 1:		//初始化
 		if(result != null){
 			eventsData.addAll(0,(ArrayList<EventVo>)result);
+			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
 			eventcardsAdapter.notifyDataSetChanged();
 			}
 		break;
 		case 2:		//下拉刷新
 			eventsData.addAll(0,(ArrayList<EventVo>)result);
+			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
             //int count = result.size();
 			if(page == 1){page++;}
             eventcardsAdapter.notifyDataSetChanged();
@@ -192,6 +197,8 @@ public class FilterEventACTIVITY extends BaseActivity implements PullToRefreshAt
 			break;
 		case 3:		//底部刷新
 			eventsData.addAll((ArrayList<EventVo>)result); 
+			ArrayListUtil.removeDuplicate(eventsData);
+			ArrayListUtil.sortEventVo(eventsData);
         	eventcardsAdapter.notifyDataSetChanged();
 		    moreView.setVisibility(View.GONE); 
 		    page++;

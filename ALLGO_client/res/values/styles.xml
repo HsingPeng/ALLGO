@@ -24,6 +24,9 @@
     <style name="MyActionBarTabs" parent="@android:style/Widget.Holo.ActionBar.TabView">
         <!-- tab indicator -->
         <item name="android:background">@drawable/actionbar_tab_indicator</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingLeft">16dip</item>
+        <item name="android:paddingRight">16dip</item>
     </style>
     
     <style name="AppTheme.DialogWhenLarge" parent="android:Theme.Holo.Light.DialogWhenLarge">

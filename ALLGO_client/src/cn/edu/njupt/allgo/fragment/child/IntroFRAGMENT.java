@@ -7,7 +7,7 @@ import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logic.UserDataLogic;
 import cn.edu.njupt.allgo.logicImpl.UserDataLogicImpl;
-import cn.edu.njupt.allgo.util.ChangeDateUtil;
+import cn.edu.njupt.allgo.util.DateUtil;
 import cn.edu.njupt.allgo.vo.UserDataVo;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -91,7 +91,7 @@ public class IntroFRAGMENT extends BaseChildFRAGMENT implements OnRefreshListene
 		TextView_intro_USex.setText((userdata.getUsex() == 1)?"男":"女");
 		TextView_intro_UEmail.setText(userdata.getUemail());
 		TextView_intro_UBirthday.setText(userdata.getUbirthday());
-		TextView_intro_URegDate.setText(ChangeDateUtil.showDate(userdata.getUregdate() , "yyyy'年'MMMd日"));
+		TextView_intro_URegDate.setText(DateUtil.showDate(userdata.getUregdate() , "yyyy'年'MMMd日"));
 		TextView_intro_UAddress.setText(userdata.getUaddress());
 		
 	}
