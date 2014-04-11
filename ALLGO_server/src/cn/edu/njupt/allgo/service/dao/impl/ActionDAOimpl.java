@@ -149,9 +149,24 @@ public class ActionDAOimpl implements ActionDAO {
 	   }catch(Exception e){
 		   	e.printStackTrace();
 	   }
-		
 	}
 
+	@Override
+	public void cutFollower(int eid) {
+		try{
+			Session s = HibernateSessionFactory.getSession();
+			String hql="update EventVo vo set vo.followerscount=vo.followerscount - 1 where vo.eid=:eid";
+			Query query=s.createQuery(hql);
+			query.setParameter("eid",eid);
+			query.executeUpdate();
+			Transaction t = s.beginTransaction();
+			t.commit();
+			s.close();
+	   }catch(Exception e){
+		   	e.printStackTrace();
+	   }
+	}
+	
 	@Override
 	public void countComment(int eid) {
 		try{

@@ -54,7 +54,7 @@ public class EventFollowServlet extends HttpServlet {
 			if(vo != null){
 				helper.put("response", "follow");
 				helper.put("follow", vo);
-				
+
 				ServletContext servletContext = this.getServletContext();
 				ServerMsg message = new ServerMsg(10,vo,null);
 				servletContext.setAttribute("action"+UUID.randomUUID(), message);

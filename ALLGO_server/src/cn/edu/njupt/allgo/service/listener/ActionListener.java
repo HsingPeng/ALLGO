@@ -68,7 +68,9 @@ public class ActionListener implements ServletContextAttributeListener {
 			break;
 		case 10:	//加入活动
 			action10(message);
-			
+			break;
+		case 11:	//取消加入活动
+			action11(message);
 			break;
 		case 14:	//添加活动补充
 			action14(message);
@@ -78,6 +80,7 @@ public class ActionListener implements ServletContextAttributeListener {
 			break;
 		}
 	}
+
 
 	//提交活动评论
 	private void action9(ServerMsg message){
@@ -150,6 +153,13 @@ public class ActionListener implements ServletContextAttributeListener {
 		}else{
 			dao.putUnread(euid,3,action.getEid(),0,uname+"加入了你的活动",DateTimeUtil.currentTime(),false);
 		}
+	}
+	
+
+	private void action11(ServerMsg message) {
+		
+		dao.cutFollower((int) message.getAction());
+		
 	}
 	
 	//添加活动补充

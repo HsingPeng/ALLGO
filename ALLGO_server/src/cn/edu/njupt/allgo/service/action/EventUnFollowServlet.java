@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,7 @@ import cn.edu.njupt.allgo.service.dao.impl.EventDAOimpl;
 import cn.edu.njupt.allgo.service.utils.CommonUtil;
 import cn.edu.njupt.allgo.service.utils.ServletHelper;
 import cn.edu.njupt.allgo.service.vo.EventVo;
+import cn.edu.njupt.allgo.service.vo.ServerMsg;
 
 /**
  * Servlet implementation class EventUserFollowServlet
@@ -52,6 +55,10 @@ public class EventUnFollowServlet extends HttpServlet {
 		
 		if(flag){
 			helper.put("response", "unfollow");
+
+			ServletContext servletContext = this.getServletContext();
+			ServerMsg message = new ServerMsg(11,eid,null);
+			servletContext.setAttribute("action"+UUID.randomUUID(), message);
 		}else{
 			helper.put("response", "error");
 			Map<String , Object> outMap = new HashMap<String , Object>() ;

@@ -53,7 +53,7 @@ public interface ActionDAO {
 	public void deleteAdd(int eid);
 	
 	/**
-	 * 活动补充计数加一
+	 * 活动加入者计数加一
 	 * @param eid
 	 */
 	public void countFollower(int eid);
@@ -63,4 +63,11 @@ public interface ActionDAO {
 	 * @param eid
 	 */
 	public void countComment(int eid);
+
+	/**
+	 * 活动加入者计数减一
+	 * @param eid
+	 */
+	public void cutFollower(int eid);
+	
 }
