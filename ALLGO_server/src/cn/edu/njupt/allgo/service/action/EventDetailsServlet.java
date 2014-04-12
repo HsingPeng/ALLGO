@@ -39,7 +39,9 @@ public class EventDetailsServlet extends HttpServlet {
 		
 		int eid = helper.getInt("eid");
 
-		if(!dao.isExist(eid)){
+		EventVo event = dao.isExist(eid);
+		
+		if(event == null){
 			helper.put("response", "event_destroy");
 			helper.put("eid", eid);
 		}else{

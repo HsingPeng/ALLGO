@@ -18,7 +18,7 @@ public class LogOffACTIVITY extends BaseActivity implements RefreshInterFace{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_logoff);
+		setContentView(R.layout.activity_processdialog);
 		Intent intent = this.getIntent();
 		loginLogic = new LoginLogicImpl(this,this);
 		switch(intent.getIntExtra("action", 0)){

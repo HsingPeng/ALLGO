@@ -79,6 +79,12 @@
         </activity>
         
         <activity
+            android:name="cn.edu.njupt.allgo.activity.LoadEventACTIVITY"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"
+            android:label="载入活动中" >
+        </activity>
+        
+        <activity
             android:name="cn.edu.njupt.allgo.activity.EventPageACTIVITY"
             android:label="活动主页" >
         </activity>

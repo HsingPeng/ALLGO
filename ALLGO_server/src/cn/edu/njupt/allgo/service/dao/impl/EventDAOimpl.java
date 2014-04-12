@@ -219,17 +219,14 @@ public class EventDAOimpl implements EventAddDAO , EventCommentsCreatDAO , Event
 	
 	//检测活动是否存在
 	@Override
-	public boolean isExist(int eid) {
-		boolean flag = false;
+	public EventVo isExist(int eid) {
+		EventVo vo = null;
 		Session s = HibernateSessionFactory.getSession();
 		Transaction t = s.beginTransaction();
-		EventVo vo = (EventVo) s.get(EventVo.class, eid);
+		vo = (EventVo) s.get(EventVo.class, eid);
 		t.commit();
 		s.close();
-		if(vo != null){
-			flag = true;
-		}
-		return flag;
+		return vo;
 	}
 	
 }

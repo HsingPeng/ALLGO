@@ -182,9 +182,7 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 		textView_eventpage_position.setText(eventdata.getPosition().split(" ")[0]+
 				"省 "+eventdata.getPosition().split(" ")[1]+"市 "+eventdata.getPosition().split(" ")[2]);
 		imageView_eventpage_when.setImageResource(setWhenImage(eventdata.getStartdate(),eventdata.getEnddate()));
-		
 		isUpZhu();
-		
 	}
 
 	/**

@@ -6,7 +6,9 @@ import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnim
 
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import cn.edu.njupt.allgo.R;
+import cn.edu.njupt.allgo.activity.EventPageACTIVITY;
 import cn.edu.njupt.allgo.activity.HomeACTIVITY;
+import cn.edu.njupt.allgo.activity.LoadEventACTIVITY;
 import cn.edu.njupt.allgo.activity.UnreadACTIVITY;
 import cn.edu.njupt.allgo.adapter.UnreadCardsAdapter;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
@@ -15,6 +17,7 @@ import cn.edu.njupt.allgo.logicImpl.UnreadLogicImpl;
 import cn.edu.njupt.allgo.util.ArrayListUtil;
 import cn.edu.njupt.allgo.vo.UnreadVo;
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;  
@@ -79,14 +82,36 @@ public class UnreadFRAGMENT extends BaseFRAGMENT implements PullToRefreshAttache
 					int arg2, long arg3) {
 				// TODO 点击方法
 				
-				Toast.makeText( getActivity(),
-						"点击了==》"+UnreadcardsAdapter.getItem(arg2).getAction(), 
-						Toast.LENGTH_SHORT).show();
+				/*Toast.makeText( getActivity(),
+						"点击了==>"+UnreadcardsAdapter.getItem(arg2).getAction(), 
+						Toast.LENGTH_SHORT).show();*/
+				doAction(UnreadcardsAdapter.getItem(arg2));
 
 			}
         });
 	}
 
+	//进入相应界面
+	private void doAction(UnreadVo unreadVo) {
+		switch(unreadVo.getAction()){
+		case 0:		//进入活动主页
+			Intent intent = new Intent(getActivity(),LoadEventACTIVITY.class);
+			intent.putExtra("eid", unreadVo.getId());
+			startActivity(intent);
+			break;
+		case 1:		//无操作
+			
+			break;
+		case 2:		//进入添加好友界面
+			
+			break;
+		case 3:		//进入聊天界面
+			
+			break;
+		}
+		
+	}
+	
 	@Override
 	public void initActionBar() {
 		// TODO 初始化actionbar

@@ -30,7 +30,6 @@ public class LogDAOimpl implements LoginDAO , UserDataDAO {
 			list=query.list();
 			if(list.size() == 1){
 				vo = list.get(0);
-				vo.setUpassword(null);
 			}
 		}catch(Exception e){
 		   	e.printStackTrace();

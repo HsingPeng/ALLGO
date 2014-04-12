@@ -5,6 +5,7 @@ import java.util.List;
 import cn.edu.njupt.allgo.service.vo.EventAddVo;
 import cn.edu.njupt.allgo.service.vo.EventCommentVo;
 import cn.edu.njupt.allgo.service.vo.EventFollowerVo;
+import cn.edu.njupt.allgo.service.vo.EventVo;
 
 public interface EventDetailsDAO {
 
@@ -33,6 +34,6 @@ public interface EventDetailsDAO {
 	 * 检测活动是否存在
 	 * @return
 	 */
-	public boolean isExist(int eid);
+	public EventVo isExist(int eid);
 	
 }
