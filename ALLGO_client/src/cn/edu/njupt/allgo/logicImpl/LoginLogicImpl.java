@@ -29,7 +29,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
-import cn.edu.njupt.allgo.EventPageACTIVITY;
+import cn.edu.njupt.allgo.activity.EventPageACTIVITY;
 import cn.edu.njupt.allgo.application.MyDeclare;
 import cn.edu.njupt.allgo.logic.LoginLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;

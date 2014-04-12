@@ -2,8 +2,8 @@ package cn.edu.njupt.allgo.fragment.child;
 
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher.OnRefreshListener;
-import cn.edu.njupt.allgo.HomeACTIVITY;
 import cn.edu.njupt.allgo.R;
+import cn.edu.njupt.allgo.activity.HomeACTIVITY;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logic.UserDataLogic;
 import cn.edu.njupt.allgo.logicImpl.UserDataLogicImpl;

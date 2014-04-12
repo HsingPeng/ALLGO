@@ -14,6 +14,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import cn.edu.njupt.allgo.activity.EventPageACTIVITY;
 import cn.edu.njupt.allgo.application.MyDeclare;
 import cn.edu.njupt.allgo.logic.EventPageLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
@@ -24,7 +25,6 @@ import cn.edu.njupt.allgo.vo.EventCommentVo;
 import cn.edu.njupt.allgo.vo.EventFollowerVo;
 import cn.edu.njupt.allgo.vo.EventVo;
 import cn.edu.njupt.allgo.vo.UserDataVo;
-import cn.edu.njupt.allgo.EventPageACTIVITY;;
 
 public class EventPageLogicImpl implements EventPageLogic {
 

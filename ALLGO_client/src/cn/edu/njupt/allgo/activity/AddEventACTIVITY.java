@@ -1,4 +1,4 @@
-package cn.edu.njupt.allgo;
+package cn.edu.njupt.allgo.activity;
 
 
 import cn.edu.njupt.allgo.R;
@@ -13,6 +13,7 @@ import cn.edu.njupt.allgo.widget.MyTimeSpinnerB;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
@@ -239,8 +240,12 @@ public class AddEventACTIVITY extends BaseActivity implements RefreshInterFace{
 			this.progressDialog.dismiss();
 	}
 
+	//点击确认区域，从dialog回调
 	public void changePosition(String position){
 		this.position = position;
+		Drawable left = getResources().getDrawable(R.drawable.icon_location_event_red) ;
+		left.setBounds(0, 0, left.getIntrinsicWidth(), left.getIntrinsicHeight());
+		button_addevent_position.setCompoundDrawables(left, null, null, null);
 	}
 	
 	@Override

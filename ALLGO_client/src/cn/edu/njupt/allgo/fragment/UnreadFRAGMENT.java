@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
-import cn.edu.njupt.allgo.HomeACTIVITY;
 import cn.edu.njupt.allgo.R;
+import cn.edu.njupt.allgo.activity.HomeACTIVITY;
+import cn.edu.njupt.allgo.activity.UnreadACTIVITY;
 import cn.edu.njupt.allgo.adapter.UnreadCardsAdapter;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logic.UnreadLogic;
@@ -62,7 +63,7 @@ public class UnreadFRAGMENT extends BaseFRAGMENT implements PullToRefreshAttache
 	
 	private void setView() {
 		listView = (ListView)getView().findViewById(R.id.listView_unread);
-		mPullToRefreshAttacher = ((HomeACTIVITY)getActivity())
+		mPullToRefreshAttacher = ((UnreadACTIVITY)getActivity())
                 .getPullToRefreshAttacher();
         mPullToRefreshAttacher.addRefreshableView(listView, this);
         

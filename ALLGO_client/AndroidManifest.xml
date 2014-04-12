@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme" >
         <uses-library android:name="android.test.runner"/>
          <activity
-            android:name="cn.edu.njupt.allgo.FirstACTIVIY"
+            android:name="cn.edu.njupt.allgo.activity.FirstACTIVIY"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:launchMode="singleTask" >
@@ -32,14 +32,14 @@
         </activity>
         
         <activity
-            android:name="cn.edu.njupt.allgo.WelcomeACTIVITY"
+            android:name="cn.edu.njupt.allgo.activity.WelcomeACTIVITY"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme"
             android:label="欢迎" >
         </activity>
         
         <activity
-            android:name="cn.edu.njupt.allgo.RegisterACTIVITY"
+            android:name="cn.edu.njupt.allgo.activity.RegisterACTIVITY"
             android:label="注册"
             android:theme="@style/AppTheme.DialogWhenLarge"
              >
@@ -47,7 +47,7 @@
         </activity>
         
         <activity
-            android:name="cn.edu.njupt.allgo.HomeACTIVITY"
+            android:name="cn.edu.njupt.allgo.activity.HomeACTIVITY"
             android:label="@string/app_name"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme"
@@ -56,35 +56,40 @@
         </activity>
         
         <activity
-            android:name="cn.edu.njupt.allgo.AddEventACTIVITY"
+            android:name="cn.edu.njupt.allgo.activity.AddEventACTIVITY"
             android:theme="@style/AppTheme.DialogWhenLarge"
             android:label="组织活动" >
         </activity>
         
         <activity
-            android:name="cn.edu.njupt.allgo.FilterACTIVITY"
+            android:name="cn.edu.njupt.allgo.activity.FilterACTIVITY"
             android:theme="@android:style/Theme.Holo.Light.Dialog"
             android:label="活动筛选" >
         </activity>
         
         <activity
-            android:name="cn.edu.njupt.allgo.FilterEventACTIVITY"
+            android:name="cn.edu.njupt.allgo.activity.FilterEventACTIVITY"
             android:label="活动筛选" >
         </activity>
         
         <activity
-            android:name="cn.edu.njupt.allgo.LogOffACTIVITY"
+            android:name="cn.edu.njupt.allgo.activity.LogOffACTIVITY"
             android:theme="@android:style/Theme.Holo.Light.Dialog"
             android:label="正在下线" >
         </activity>
         
         <activity
-            android:name="cn.edu.njupt.allgo.EventPageACTIVITY"
+            android:name="cn.edu.njupt.allgo.activity.EventPageACTIVITY"
             android:label="活动主页" >
+        </activity>
+
+        <activity
+            android:name="cn.edu.njupt.allgo.activity.UnreadACTIVITY"
+            android:label="我的消息" >
         </activity>
         
         <activity
-            android:name="cn.edu.njupt.allgo.SettingACTIVITY"
+            android:name="cn.edu.njupt.allgo.activity.SettingACTIVITY"
             android:label="设置" >
         </activity>
         

@@ -1,4 +1,4 @@
-package cn.edu.njupt.allgo;
+package cn.edu.njupt.allgo.activity;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;

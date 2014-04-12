@@ -173,7 +173,7 @@ public class DateUtil {
 	public static String saveDate(String time1 , String source ,String result) {
 		String str = "";
 		if(!time1.equals("")){
-			SimpleDateFormat sf = new SimpleDateFormat(source, Locale.CHINA);
+			SimpleDateFormat sf = new SimpleDateFormat(source, Locale.ENGLISH);
 			sf.setTimeZone(TimeZone.getTimeZone("GMT+08:00"));
 			Date date = null;
 			try {

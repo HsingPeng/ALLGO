@@ -1,5 +1,6 @@
-package cn.edu.njupt.allgo;
+package cn.edu.njupt.allgo.activity;
 
+import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.logic.LoginLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logicImpl.LoginLogicImpl;

@@ -24,7 +24,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 
-import cn.edu.njupt.allgo.LogOffACTIVITY;
+import cn.edu.njupt.allgo.activity.LogOffACTIVITY;
 import cn.edu.njupt.allgo.application.MyDeclare;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 

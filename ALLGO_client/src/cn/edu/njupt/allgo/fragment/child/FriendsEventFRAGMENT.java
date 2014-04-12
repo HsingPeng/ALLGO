@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
-import cn.edu.njupt.allgo.AddEventACTIVITY;
-import cn.edu.njupt.allgo.EventPageACTIVITY;
-import cn.edu.njupt.allgo.HomeACTIVITY;
 import cn.edu.njupt.allgo.R;
+import cn.edu.njupt.allgo.activity.AddEventACTIVITY;
+import cn.edu.njupt.allgo.activity.EventPageACTIVITY;
+import cn.edu.njupt.allgo.activity.HomeACTIVITY;
 import cn.edu.njupt.allgo.adapter.EventCardsAdapter;
 import cn.edu.njupt.allgo.logic.FriendsEventLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;

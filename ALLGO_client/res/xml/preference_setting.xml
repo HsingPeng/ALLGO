@@ -31,7 +31,7 @@
 
             <intent android:action="android.intent.action.MAIN"
                 	android:targetPackage="cn.edu.njupt.allgo"
-                    android:targetClass="cn.edu.njupt.allgo.LogOffACTIVITY" />
+                    android:targetClass="cn.edu.njupt.allgo.activity.LogOffACTIVITY" />
         </PreferenceScreen>
          
      </PreferenceCategory>

@@ -8,11 +8,11 @@ import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
-import cn.edu.njupt.allgo.AddEventACTIVITY;
-import cn.edu.njupt.allgo.EventPageACTIVITY;
-import cn.edu.njupt.allgo.FilterACTIVITY;
 import cn.edu.njupt.allgo.R;
-import cn.edu.njupt.allgo.HomeACTIVITY;
+import cn.edu.njupt.allgo.activity.AddEventACTIVITY;
+import cn.edu.njupt.allgo.activity.EventPageACTIVITY;
+import cn.edu.njupt.allgo.activity.FilterACTIVITY;
+import cn.edu.njupt.allgo.activity.HomeACTIVITY;
 import cn.edu.njupt.allgo.adapter.EventCardsAdapter;
 import cn.edu.njupt.allgo.logic.CommonEventLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
@@ -163,12 +163,12 @@ public class CommonEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefr
 	@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
            // TODO 添加actionbar菜单
-           
-           MenuItem actionItem1 = menu.add("筛选") ;
-           actionItem1.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+           MenuItem actionItem1 = menu.add("筛选");
+           actionItem1.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
            actionItem1.setIcon(R.drawable.ic_action_view_as_list);
-           MenuItem actionItem2 = menu.add("组织活动") ;
-           actionItem2.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+           MenuItem actionItem2 = menu.add("组织活动");
+           actionItem2.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
            actionItem2.setIcon(R.drawable.ic_action_new_label);
 	   }
            

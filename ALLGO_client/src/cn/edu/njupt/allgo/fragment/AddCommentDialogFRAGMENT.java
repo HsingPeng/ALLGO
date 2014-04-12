@@ -4,7 +4,7 @@ package cn.edu.njupt.allgo.fragment;
 import java.lang.reflect.Field;
 
 import cn.edu.njupt.allgo.R;
-import cn.edu.njupt.allgo.WelcomeACTIVITY;
+import cn.edu.njupt.allgo.activity.WelcomeACTIVITY;
 import cn.edu.njupt.allgo.logic.EventPageLogic;
 import android.app.AlertDialog;
 import android.app.Dialog;

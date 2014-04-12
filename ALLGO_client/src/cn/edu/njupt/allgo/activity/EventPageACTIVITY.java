@@ -1,10 +1,11 @@
-package cn.edu.njupt.allgo;
+package cn.edu.njupt.allgo.activity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
+import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.fragment.AddCommentDialogFRAGMENT;
 import cn.edu.njupt.allgo.fragment.UpdateEventDialogFRAGMENT;
 import cn.edu.njupt.allgo.logic.EventPageLogic;
@@ -147,7 +148,7 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 	}
 
 	private void setFollowButton(){
-		button_follow.setText("已加入");
+		button_follow.setText("已经加入");
 		Drawable left = getResources().getDrawable(R.drawable.icon_like_red) ;
 		left.setBounds(0, 0, left.getIntrinsicWidth(), left.getIntrinsicHeight());
 		button_follow.setCompoundDrawables(left, null, null, null);
@@ -429,6 +430,9 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 				break;
 			case -1:
 				Toast.makeText(this, (String)result, Toast.LENGTH_SHORT).show();
+				if(mPullToRefreshAttacher.isRefreshing()){
+					mPullToRefreshAttacher.setRefreshComplete();
+				}
 				closeProgressDialog();
 				break;
 			case 3:

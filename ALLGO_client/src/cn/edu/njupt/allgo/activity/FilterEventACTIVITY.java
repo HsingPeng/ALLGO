@@ -1,4 +1,4 @@
-package cn.edu.njupt.allgo;
+package cn.edu.njupt.allgo.activity;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
+import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.adapter.EventCardsAdapter;
 import cn.edu.njupt.allgo.fragment.child.CommonEventFRAGMENT;
 import cn.edu.njupt.allgo.logic.CommonEventLogic;

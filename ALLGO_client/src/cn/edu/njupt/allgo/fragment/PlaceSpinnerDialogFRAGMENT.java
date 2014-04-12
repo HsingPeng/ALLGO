@@ -1,6 +1,7 @@
 package cn.edu.njupt.allgo.fragment;
 
 import cn.edu.njupt.allgo.R;
+import cn.edu.njupt.allgo.activity.AddEventACTIVITY;
 import cn.edu.njupt.allgo.widget.PlaceSpinner;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.Toast;
-import cn.edu.njupt.allgo.AddEventACTIVITY;
 
 public class PlaceSpinnerDialogFRAGMENT extends DialogFragment {
 

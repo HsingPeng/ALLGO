@@ -1,12 +1,14 @@
-package cn.edu.njupt.allgo;
+package cn.edu.njupt.allgo.activity;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
 
+import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.logic.LoginLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logicImpl.LoginLogicImpl;

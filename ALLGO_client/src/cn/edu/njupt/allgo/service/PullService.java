@@ -31,9 +31,9 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 
-import cn.edu.njupt.allgo.HomeACTIVITY;
-import cn.edu.njupt.allgo.LogOffACTIVITY;
 import cn.edu.njupt.allgo.R;
+import cn.edu.njupt.allgo.activity.HomeACTIVITY;
+import cn.edu.njupt.allgo.activity.LogOffACTIVITY;
 import cn.edu.njupt.allgo.application.MyDeclare;
 import cn.edu.njupt.allgo.util.NetUtil;
 import cn.edu.njupt.allgo.vo.UnreadVo;
@@ -184,23 +184,27 @@ public class PullService extends Service{
 				try {
 					jsonObject = new JSONObject(reading);
 					 if(jsonObject.getString("response").equals("remind_unread")){
-						 SharedPreferences sharedPref = this.getSharedPreferences("userdata",Context.MODE_PRIVATE);
-							int uid = sharedPref.getInt("uid", -1) ;
 							List<UnreadVo> unreadDate = new ArrayList<UnreadVo>();
-					    	try{
-							    DbUtils db = DbUtils.create(this,uid + ".db");
-							    db.configAllowTransaction(true);
-						        db.configDebug(true);
-						        unreadDate = JSON.parseArray(jsonObject.getString("remind_unread") , UnreadVo.class);
-						        	db.saveAll(unreadDate);
-						        	Log.i(TAG, "db.saveAll(unreadDate)==>"+unreadDate.toString());
-						        }catch(DbException e){
-							    	Log.e("DB", "error :" + e.getMessage() + "\n");
-							    }
+							unreadDate = JSON.parseArray(jsonObject.getString("remind_unread") , UnreadVo.class);
 					    	if(unreadDate.size() > 0){
+					    		try{
+					    			SharedPreferences sharedPref = this.getSharedPreferences("userdata",Context.MODE_PRIVATE);
+									int uid = sharedPref.getInt("uid", -1) ;
+								    DbUtils db = DbUtils.create(this,uid + ".db");
+								    db.configAllowTransaction(true);
+							        db.configDebug(true);
+							        db.saveAll(unreadDate);
+							        Log.i(TAG, "db.saveAll(unreadDate)==>"+unreadDate.toString());
+							        }catch(DbException e){
+								    	Log.e("DB", "error :" + e.getMessage() + "\n");
+								    }
 								 Intent intent = new Intent(this,HomeACTIVITY.class);
 						         intent.putExtra("action", 1);
 						         notifications(intent);
+						         Intent intent2 = new Intent();
+				                 intent2.setAction("cn.edu.njupt.allgo.HomeACTIVITY");
+				                 intent2.putExtra("action", 2);
+				                 sendBroadcast(intent2);
 					    	}
 	    	        }else if(jsonObject.getString("response").equals("notlogin")){
 	    	        	//把登录过期的消息发给HomeACTIVITY，由它处理

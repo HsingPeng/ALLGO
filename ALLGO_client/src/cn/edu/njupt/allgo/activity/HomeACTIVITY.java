@@ -1,6 +1,7 @@
-package cn.edu.njupt.allgo;
+package cn.edu.njupt.allgo.activity;
 
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
+import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.fragment.AllEventFRAGMENT;
 import cn.edu.njupt.allgo.fragment.BaseFRAGMENT;
 import cn.edu.njupt.allgo.fragment.ContactFRAGMENT;
@@ -9,6 +10,7 @@ import cn.edu.njupt.allgo.fragment.UnreadFRAGMENT;
 import cn.edu.njupt.allgo.service.PullService;
 import cn.edu.njupt.allgo.vo.EventVo;
 import android.app.ActionBar;
+import android.app.NotificationManager;
 import android.support.v4.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -26,6 +28,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -50,10 +53,10 @@ public class HomeACTIVITY extends FragmentActivity{
     private CharSequence mTitle;
     private String[] mHomeTitles;
 	private int position = -1;
-	private UnreadFRAGMENT unreadFragment;
 	private ContactFRAGMENT contactFragment;
 	private long mExitTime;
 	private String TAG = "HomeActivity";
+	private MenuItem actionItem_unread;
 
 	//广播接收机
 	public class HomeReceiver extends BroadcastReceiver
@@ -73,6 +76,10 @@ public class HomeACTIVITY extends FragmentActivity{
     				Intent intent1 = new Intent(HomeACTIVITY.this,LogOffACTIVITY.class);
     				intent1.putExtra("action", 1);
     				startActivity(intent1);
+		    		break;
+		    	case 2:
+		    		Log.i(TAG,"unread==>case 2");
+		    		actionItem_unread.setIcon(R.drawable.ic_action_email_full);
 		    		break;
 		    	}
 	       }  
@@ -117,9 +124,6 @@ public class HomeACTIVITY extends FragmentActivity{
         creatdrawer();
 	}
 
-	
-	
-	
 	private void findViewById(Bundle savedInstanceState) {
 
 		// Check that the activity is using the layout version with  
@@ -135,10 +139,19 @@ public class HomeACTIVITY extends FragmentActivity{
         }
 	}
 	
+	private boolean isActivity(int position){
+		//TODO intent需要修改的地方
+		boolean flag = true ;
+		if(position != 4 && position != 2){
+			flag = false;
+		}
+		return flag;
+	}
+	
 	//此方法用于改变主页显示的内容，以及actionbar的tab
     private void pagerchange(int position) {
     	//公共操作
-    	if(position != 4) {
+    	if(!isActivity(position)) {
     	this.position = position ;  //改变FLAG
 		mActionBar.removeAllTabs();//清空 ActionBar的所有TAB
     	}
@@ -161,11 +174,8 @@ public class HomeACTIVITY extends FragmentActivity{
 	    	}
 	    	switchContent(alleventFragment);
 	    	break;
-	    case 2:	   //载入unreadFragment
-	    	if(unreadFragment == null) {
-	    		unreadFragment = new UnreadFRAGMENT();
-	    	}
-	    	switchContent(unreadFragment);
+	    case 2:	   //载入unreadACTIVITY
+	    	openUnread();
 	    	break;
 	    case 3:   //载入contactlistFragment;chatlistFragment
 	    	if(contactFragment == null) {
@@ -285,7 +295,7 @@ public class HomeACTIVITY extends FragmentActivity{
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             selectItem(position);
-            if(position != 4){
+            if(!isActivity(position)){
 	            	for(int i=0;i<parent.getCount();i++){
 		            View v=parent.getChildAt(i);
 		            if (position == i) {
@@ -304,7 +314,7 @@ public class HomeACTIVITY extends FragmentActivity{
         	pagerchange(position);  //调用方法改变viewpage的内容
     	} ;
         // update selected item and title, then close the drawer
-        if(position == 4) {
+        if(isActivity(position)) {
         	mDrawerList.setItemChecked(this.position, true);
         	setTitle(mHomeTitles[this.position]);
         	mDrawerLayout.closeDrawer(mDrawerList);
@@ -322,7 +332,15 @@ public class HomeACTIVITY extends FragmentActivity{
         return super.onPrepareOptionsMenu(menu);
     }
     
-    //
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+	    	actionItem_unread = menu.add(Menu.NONE, Menu.NONE, 6,"消息") ;
+	        actionItem_unread.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+	        actionItem_unread.setIcon(R.drawable.ic_action_email);
+            return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
          // The action bar home/up action should open or close the drawer.
@@ -331,10 +349,25 @@ public class HomeACTIVITY extends FragmentActivity{
             return true;
         }
 
+        if(item.getTitle().equals("消息")){
+        	openUnread();
+        	return true;
+        }
+        
             return super.onOptionsItemSelected(item);
         }
     
-    @Override
+    //打开消息界面
+    private void openUnread() {
+		Intent intent = new Intent(this,UnreadACTIVITY.class);
+		startActivity(intent);
+		actionItem_unread.setIcon(R.drawable.ic_action_email);
+		NotificationManager mNotificationManager = 
+				(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		mNotificationManager.cancel(1001);
+	}
+
+	@Override
     public void setTitle(CharSequence title) {
         mTitle = title;
         mActionBar.setTitle(mTitle);
@@ -404,12 +437,13 @@ public class HomeACTIVITY extends FragmentActivity{
 		Log.i(TAG,"onResume==>HomeAvtivity==>"+action);
 		switch(action){
 		case 1:
-			if(unreadFragment == null){
+			openUnread();
+			/*if(unreadFragment == null){
 				selectItem(2);
 				}else{
 					selectItem(2);
 					unreadFragment.refresh(null, 3);
-				}
+				}*/
 		break;
 		case 2:
 			if(alleventFragment != null){

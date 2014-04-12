@@ -33,7 +33,7 @@
                     android:minHeight="50dp"
                     android:minWidth="50dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/default_head" />
+                    android:src="@drawable/default_head_widget" />
 
                 <LinearLayout
                     android:id="@+id/LinearLayout1"

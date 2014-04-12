@@ -1,6 +1,7 @@
-package cn.edu.njupt.allgo;
+package cn.edu.njupt.allgo.activity;
 
 
+import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.util.DensityUtil;
 import cn.edu.njupt.allgo.widget.MyDateSpinnerA;
 import cn.edu.njupt.allgo.widget.MyDateSpinnerB;

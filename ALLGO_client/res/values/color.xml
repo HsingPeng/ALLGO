@@ -16,4 +16,5 @@
    <color name="frontColor">#ffa00e</color>
 	<color name="white">#FFFFFFFF</color>
 	<color name="selected">#ffff8a00</color>
+	<color name="transparent_shadow">#dddedede</color>
 </resources>

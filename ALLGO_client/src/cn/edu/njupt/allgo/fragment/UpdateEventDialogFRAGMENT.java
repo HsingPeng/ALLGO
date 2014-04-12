@@ -7,7 +7,7 @@ import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import cn.edu.njupt.allgo.EventPageACTIVITY;
+import cn.edu.njupt.allgo.activity.EventPageACTIVITY;
 
 
 
