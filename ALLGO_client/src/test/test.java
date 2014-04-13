@@ -46,7 +46,7 @@ public class test extends AndroidTestCase {
 	}
 	public void test7(){
 		String ss = "周一 3月 31 11:58:00 GMT+08:00 2014";
-		ss = DateUtil.saveDate(ss);
+		//ss = DateUtil.saveDate(ss);
 		Log.i("Http",ss);
 	}
 	

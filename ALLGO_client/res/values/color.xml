@@ -17,4 +17,5 @@
 	<color name="white">#FFFFFFFF</color>
 	<color name="selected">#ffff8a00</color>
 	<color name="transparent_shadow">#dddedede</color>
+	<color name="transparent_yellow">#33e1c674</color>
 </resources>

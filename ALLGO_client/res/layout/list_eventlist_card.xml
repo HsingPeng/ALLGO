@@ -4,7 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bgColor"
-    android:padding="4dp" >
+    android:paddingLeft="4dp"
+    android:paddingTop="2dp"
+    android:paddingRight="4dp" >
 
     <FrameLayout
         android:layout_width="wrap_content"

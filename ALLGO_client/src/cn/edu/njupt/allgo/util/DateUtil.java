@@ -10,7 +10,11 @@ import java.util.TimeZone;
 
 public class DateUtil {
 
-
+	/**
+	 * "yyyy年MM月dd日HH:mm" , "EEE MMM dd hh:mm:ss Z yyyy"
+	 * @param time1
+	 * @return
+	 */
 	public static String changeDate(String time1){
 		return showDate(time1 , "yyyy年MM月dd日HH:mm" , "EEE MMM dd hh:mm:ss Z yyyy");
 	}
@@ -165,10 +169,10 @@ public class DateUtil {
 		return flag;
 	}
 	
-	public static String saveDate(String time1){
+/*	public static String saveDate(String time1){
 		
 		return saveDate(time1 , "E MMM dd hh:mm:ss Z yyyy" , "EEE MMM dd hh:mm:ss Z yyyy");
-	}
+	}*/
 	
 	public static String saveDate(String time1 , String source ,String result) {
 		String str = "";
@@ -187,6 +191,37 @@ public class DateUtil {
 			    str = sdf.format(date);
 		}
 		return str;
+	}
+	
+	/**
+	 * 比较时间
+	 * 0.相等 <0.大于 >0.小于
+	 * @param time1
+	 * @param time2
+	 * @return
+	 */
+	public static int compareDate(String time1 , String time2){
+		Date date1 = formatDate(time1);
+		Date date2 = formatDate(time2);
+		return date1.compareTo(date2);
+	}
+	
+	
+	/**
+	 * String转换到Date
+	 * @param time	"EEE MMM dd hh:mm:ss Z yyyy"
+	 * @return
+	 */
+	public static Date formatDate(String time){
+		SimpleDateFormat sf = new SimpleDateFormat("EEE MMM dd hh:mm:ss Z yyyy", Locale.ENGLISH);
+		sf.setTimeZone(TimeZone.getTimeZone("GMT+08:00"));
+		Date date = null;
+		try {
+			date = sf.parse(time);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date;
 	}
 	
 }

@@ -56,6 +56,9 @@ public  class UnreadCardsAdapter extends ArrayAdapter<UnreadVo> {
 			viewHolder = (ViewHolder) view.getTag();
 			resetViewHolder(viewHolder);
 		}
+		if(unread.isIsread()){
+			view.setBackgroundResource(R.drawable.bg_card_read_listview);
+		}
 		viewHolder.textView_unread_RCategroy.setText(setRCategroy(unread.getRcategroy()));
 		viewHolder.textView_unread_Annotation.setText(unread.getAnnotation());
 		viewHolder.textView_unread_time.setText(DateUtil.showDate(unread.getTime()));

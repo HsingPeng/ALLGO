@@ -127,11 +127,27 @@ public class UnreadLogicImpl implements UnreadLogic {
 	        db.configDebug(true);
 	        Log.i("DB", "deleteNo =saveUnread=>" + unreadDate.size()) ;
 	        for(int i=0 ; i<unreadDate.size() ; i++){
-	        	db.save(unreadDate.get(i));
+	        	db.saveOrUpdate(unreadDate.get(i));
 	        }
 			}catch(DbException e){
 		    	Log.e("DB", "error :" + e.getMessage() + "\n");
 		    }
+	}
+
+	@Override
+	public void setRead(UnreadVo unread) {
+		SharedPreferences sharedPref = context.getSharedPreferences("userdata",Context.MODE_PRIVATE);
+		int uid = sharedPref.getInt("uid", -1) ;
+    	try{
+    		unread.setIsread(true);
+		    DbUtils db = DbUtils.create(context,uid + ".db");
+		    db.configAllowTransaction(true);
+	        db.configDebug(true);
+	        db.saveOrUpdate(unread);
+			}catch(DbException e){
+		    	Log.e("DB", "error :" + e.getMessage() + "\n");
+		    }
+		
 	}
 
 }

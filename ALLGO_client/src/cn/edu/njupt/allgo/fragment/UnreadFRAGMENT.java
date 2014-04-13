@@ -81,10 +81,8 @@ public class UnreadFRAGMENT extends BaseFRAGMENT implements PullToRefreshAttache
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				// TODO 点击方法
-				
-				/*Toast.makeText( getActivity(),
-						"点击了==>"+UnreadcardsAdapter.getItem(arg2).getAction(), 
-						Toast.LENGTH_SHORT).show();*/
+				unreadLogic.setRead(UnreadcardsAdapter.getItem(arg2));
+				arg1.setBackgroundResource(R.color.transparent_yellow);
 				doAction(UnreadcardsAdapter.getItem(arg2));
 
 			}

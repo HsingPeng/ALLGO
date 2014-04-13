@@ -24,4 +24,6 @@ public interface UnreadLogic {
 	 * @param eventsData
 	 */
 	public void saveUnread(ArrayList<UnreadVo> eventsData) ;
+	
+	public void setRead(UnreadVo unread);
 }

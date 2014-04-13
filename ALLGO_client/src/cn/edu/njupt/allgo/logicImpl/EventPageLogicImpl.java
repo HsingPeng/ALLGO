@@ -54,6 +54,7 @@ public class EventPageLogicImpl implements EventPageLogic {
 						comments_count = Integer.parseInt(jsonObject.getString("comments_count"));
 						refresh.refresh(followers_count+"人", 6);
 						refresh.refresh(comments_count+"", 7);
+						refresh.refresh(JSON.parseArray(jsonObject.getString("followers") , EventFollowerVo.class),10);
 						refresh.refresh(JSON.parseArray(jsonObject.getString("adds") , EventAddVo.class),1);
 						refresh.refresh(JSON.parseArray(jsonObject.getString("comments"),EventCommentVo.class),2);
 

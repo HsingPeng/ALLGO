@@ -33,7 +33,7 @@ public class AddEventLogicImpl implements AddEventLogic {
 		this.context = context ;
 		this.refresh = refresh ;
 	}
-	
+
 	@Override
 	public void addEvent(String outline,
 			String startdate, String enddate, String content, String place,
@@ -58,13 +58,6 @@ public class AddEventLogicImpl implements AddEventLogic {
 			
 		});
 		
-		startdate = DateUtil.changeDate(startdate.replaceAll(" [^a]*\\-", ""));
-		startdate = DateUtil.saveDate(startdate);
-		if(enddate != null){
-			enddate = DateUtil.changeDate(enddate.replaceAll(" [^a]*\\-", ""));
-			enddate = DateUtil.saveDate(enddate);
-		}
-		
 		netUtil.add("outline", outline);
 		netUtil.add("startdate", startdate);
 		netUtil.add("enddate", enddate);
@@ -76,4 +69,5 @@ public class AddEventLogicImpl implements AddEventLogic {
 		netUtil.post();
 
 	}
+	
 }

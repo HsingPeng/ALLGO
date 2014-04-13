@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout_card_0"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_card"
-    android:orientation="vertical"
-    android:padding="8dp" >
+    android:background="@drawable/bg_card_unread_listview"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout_card_0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip" >
 
     <TextView
         android:id="@+id/textView_unread_RCategroy"
@@ -13,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="#666666"
+        android:textColor="@color/font_value_grey"
         android:text="提醒的种类" />
 
     <RelativeLayout
@@ -30,7 +34,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-           
             android:text="有新通知哦哦哦哦哦哦哦哦哦"
             android:textSize="18sp" />
 
@@ -42,8 +45,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="明天上午8点"
-        android:textColor="#777777"
+        android:text="昨天上午8点"
+        android:textColor="@color/font_value_grey"
         android:textSize="12sp" />
-
+    
+    </RelativeLayout>
 </RelativeLayout>

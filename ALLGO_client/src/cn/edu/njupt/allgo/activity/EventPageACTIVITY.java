@@ -14,6 +14,7 @@ import cn.edu.njupt.allgo.logicImpl.EventPageLogicImpl;
 import cn.edu.njupt.allgo.util.DateUtil;
 import cn.edu.njupt.allgo.vo.EventAddVo;
 import cn.edu.njupt.allgo.vo.EventCommentVo;
+import cn.edu.njupt.allgo.vo.EventFollowerVo;
 import cn.edu.njupt.allgo.vo.EventVo;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -109,13 +110,17 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 			@Override
 			public void onClick(View v) {
 				//加入活动
-				if(!isFollow){
-					showProgressDialog("正在加入");
-					eventPageLogic.follow(eventdata.getEid());
-					}else{
-						showProgressDialog("正在取消加入");
-						eventPageLogic.unfollow(eventdata.getEid());
-					}
+				if(checkFollow()){
+					if(!isFollow){
+						showProgressDialog("正在加入");
+						eventPageLogic.follow(eventdata.getEid());
+						}else{
+							showProgressDialog("正在取消加入");
+							eventPageLogic.unfollow(eventdata.getEid());
+						}
+				}else{
+					Toast.makeText(EventPageACTIVITY.this, "活动已经结束", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 		
@@ -135,6 +140,19 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 		
 	}
 	
+	private boolean checkFollow(){
+		boolean flag = false;
+			switch(DateUtil.judgeDate(eventdata.getStartdate(), eventdata.getEnddate())){
+			case 1:			//活动已经结束
+				
+				break;
+			default:
+				flag = true;
+				break;
+		}
+		return flag;
+	}
+	
 	//检测活动创建者是不是用户
 	private void isUpZhu() {
 		SharedPreferences share = EventPageACTIVITY.this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
@@ -148,6 +166,7 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 	}
 
 	private void setFollowButton(){
+		isFollow = true;
 		button_follow.setText("已经加入");
 		Drawable left = getResources().getDrawable(R.drawable.icon_like_red) ;
 		left.setBounds(0, 0, left.getIntrinsicWidth(), left.getIntrinsicHeight());
@@ -155,6 +174,7 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 	}
 	
 	private void setUnFollowButton(){
+		isFollow = false;
 		button_follow.setText("我要加入");
 		Drawable left = getResources().getDrawable(R.drawable.icon_like) ;
 		left.setBounds(0, 0, left.getIntrinsicWidth(), left.getIntrinsicHeight());
@@ -440,13 +460,13 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 			case 4:
 				Toast.makeText(this, "加入成功", Toast.LENGTH_SHORT).show();
 				setFollowButton();
-				isFollow = true;
+				
 				closeProgressDialog();
 				break;
 			case 5:
 				Toast.makeText(this, "取消加入", Toast.LENGTH_SHORT).show();
 				setUnFollowButton();
-				isFollow = false;
+				
 				closeProgressDialog();
 				break;
 			case 6:		//设置跟随人数
@@ -472,7 +492,20 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 				finish();
 				break;
 			case 10:	//获取跟随用户
-				
+				if(mPullToRefreshAttacher.isRefreshing()){
+					mPullToRefreshAttacher.setRefreshComplete();
+				}
+				SharedPreferences share = EventPageACTIVITY.this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+				int uid = share.getInt("uid", -1);
+				List<EventFollowerVo> list3 = (ArrayList<EventFollowerVo>)result ;
+				for(EventFollowerVo eventFollower : list3){
+					
+					if(eventFollower.getUid() == uid){
+						setFollowButton();
+					}
+					
+				}
+				closeProgressDialog();
 				break;
 			}
 			

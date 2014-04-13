@@ -6,6 +6,7 @@ import cn.edu.njupt.allgo.fragment.PlaceSpinnerDialogFRAGMENT;
 import cn.edu.njupt.allgo.logic.AddEventLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logicImpl.AddEventLogicImpl;
+import cn.edu.njupt.allgo.util.DateUtil;
 import cn.edu.njupt.allgo.widget.MyDateSpinnerA;
 import cn.edu.njupt.allgo.widget.MyDateSpinnerB;
 import cn.edu.njupt.allgo.widget.MyTimeSpinnerA;
@@ -151,11 +152,13 @@ public class AddEventACTIVITY extends BaseActivity implements RefreshInterFace{
 				 
 				String dateA = (String)dateSpinnerA.getItemAtPosition(0) ;
 				String timeA = (String)timeSpinnerA.getItemAtPosition(0) ;
+				String startdate = dateA+"-"+timeA;
+				startdate = DateUtil.changeDate(startdate.replaceAll(" [^a]*\\-", ""));
 				/*Toast.makeText(AddEventACTIVITY.this,
 						editText_Outline.getText()
 						+ dateA + timeA + isSpinnerB + categoryname 
 						+ editText_place.getText() + visible 
-						+ event_content.getText()  
+						+ event_content.getText()
 						, Toast.LENGTH_SHORT).show();*/
 				
 				if(editText_Outline.getText().toString().equals("")){
@@ -167,17 +170,26 @@ public class AddEventACTIVITY extends BaseActivity implements RefreshInterFace{
 					}else if(position == null){
 						Toast.makeText(AddEventACTIVITY.this, "请点击区域按钮选择地理位置", Toast.LENGTH_SHORT).show();
 					}else if(isSpinnerB){
-						showProgressDialog("正在提交");
+						
 						String dateB = (String)dateSpinnerB.getItemAtPosition(0) ;
 						String timeB = (String)timeSpinnerB.getItemAtPosition(0) ;
-						addEventLogic.addEvent(editText_Outline.getText().toString(), dateA+"-"+timeA, dateB+"-"+timeB,
-								event_content.getText().toString(), editText_place.getText().toString(),
-								position, categoryname, visible.equals("所有人")?0:1);
-					}else{
+						String enddate = dateB+"-"+timeB;
+						enddate = DateUtil.changeDate(enddate.replaceAll(" [^a]*\\-", ""));
+						
+						if(checkTime(startdate ,enddate)){
 						showProgressDialog("正在提交");
-						addEventLogic.addEvent(editText_Outline.getText().toString(), dateA + "-"+ timeA, null,
+						addEventLogic.addEvent(editText_Outline.getText().toString(),startdate ,enddate,
 								event_content.getText().toString(), editText_place.getText().toString(),
 								position, categoryname, visible.equals("所有人")?0:1);
+						}
+					}else{
+						
+						if(checkTime(startdate ,null)){
+						showProgressDialog("正在提交");
+						addEventLogic.addEvent(editText_Outline.getText().toString(), startdate, null,
+								event_content.getText().toString(), editText_place.getText().toString(),
+								position, categoryname, visible.equals("所有人")?0:1);
+						}
 					}
 			}
 		});
@@ -187,6 +199,29 @@ public class AddEventACTIVITY extends BaseActivity implements RefreshInterFace{
 				finish();
 			}
 		});
+	}
+	
+	private boolean checkTime(String startdate ,String enddate){
+		boolean flag = true;
+		if(enddate != null){
+			int compare = DateUtil.compareDate(startdate, enddate);
+			if(compare >= 0){
+				Toast.makeText(this, "结束时间必须在开始时间之后", Toast.LENGTH_SHORT).show();
+				flag = false;
+			}
+		}
+		if(flag){
+			switch(DateUtil.judgeDate(startdate, enddate)){
+				case 1:			//活动已经结束
+					Toast.makeText(this, "请不要选择过去的时间", Toast.LENGTH_SHORT).show();
+					flag = false;
+					break;
+				default:
+					flag = true;
+					break;
+			}
+		}
+		return flag;
 	}
 	
     @Override

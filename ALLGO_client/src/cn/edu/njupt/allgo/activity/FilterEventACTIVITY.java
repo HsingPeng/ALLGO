@@ -62,8 +62,8 @@ public class FilterEventACTIVITY extends BaseActivity implements PullToRefreshAt
 		setView();
 		commonEventLogic = new  CommonEventLogicImpl(this , this) ;
 		if(StartTimeRangA != null){
-		StartTimeRangA = DateUtil.saveDate(DateUtil.changeDate(StartTimeRangA.replaceAll(" [^a]*\\-", "")));
-		StartTimeRangB = DateUtil.saveDate(DateUtil.changeDate(StartTimeRangB.replaceAll(" [^a]*\\-", "")));
+		StartTimeRangA = DateUtil.changeDate(StartTimeRangA.replaceAll(" [^a]*\\-", ""));
+		StartTimeRangB = DateUtil.changeDate(StartTimeRangB.replaceAll(" [^a]*\\-", ""));
 		}
 		Log.i("Http","Filter==>" + place + ecategoryname + StartTimeRangA + StartTimeRangB);
 		commonEventLogic.getEvent(1, 15,  place, ecategoryname , StartTimeRangA, StartTimeRangB);

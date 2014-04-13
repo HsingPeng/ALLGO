@@ -15,5 +15,7 @@ public interface AddEventLogic {
 	 */
 	public void addEvent(String outline,String startdate,
 			String enddate,String content,String place,String position ,String ecategoryname,int visible);
+
 	
 }
+
