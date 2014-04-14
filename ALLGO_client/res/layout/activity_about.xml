@@ -5,7 +5,7 @@
     android:layout_height="wrap_content" >
 
     <ImageView
-        android:id="@+id/imageView_eventlist_userhead"
+        android:id="@+id/imageView_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -16,7 +16,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView_eventlist_userhead"
+        android:layout_below="@+id/imageView_icon"
         android:layout_centerHorizontal="true"
         android:text="都来"
         android:textSize="24sp" />

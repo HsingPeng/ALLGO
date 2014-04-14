@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
+import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.bitmap.PauseOnScrollListener;
 
 import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.adapter.EventCardsAdapter;
@@ -14,6 +16,7 @@ import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logicImpl.CommonEventLogicImpl;
 import cn.edu.njupt.allgo.util.ArrayListUtil;
 import cn.edu.njupt.allgo.util.DateUtil;
+import cn.edu.njupt.allgo.util.ImageUtil;
 import cn.edu.njupt.allgo.vo.EventVo;
 import android.app.Activity;
 import android.content.Intent;
@@ -47,6 +50,7 @@ public class FilterEventACTIVITY extends BaseActivity implements PullToRefreshAt
 	private boolean listflag = false ;  //保证上滑刷新的线程同时只开启一个
 	private boolean listfootflag = false ; ////保证页脚只有一个
 	private CommonEventLogic commonEventLogic  ;
+	private ImageUtil imageUtils;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -76,7 +80,10 @@ public class FilterEventACTIVITY extends BaseActivity implements PullToRefreshAt
 
          mPullToRefreshAttacher.addRefreshableView(listView, this);
 
-		eventcardsAdapter = new EventCardsAdapter(this,eventsData);
+        imageUtils =  new ImageUtil(this);
+ 		listView.setOnScrollListener(new PauseOnScrollListener(imageUtils, false, true)); 
+ 		
+		eventcardsAdapter = new EventCardsAdapter(this,eventsData,imageUtils);
 		swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(eventcardsAdapter);
 		swingBottomInAnimationAdapter.setInitialDelayMillis(300);
 		swingBottomInAnimationAdapter.setAbsListView(listView);

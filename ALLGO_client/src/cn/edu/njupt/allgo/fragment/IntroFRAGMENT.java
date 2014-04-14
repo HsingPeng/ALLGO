@@ -12,6 +12,7 @@ import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logic.UserDataLogic;
 import cn.edu.njupt.allgo.logicImpl.UserDataLogicImpl;
 import cn.edu.njupt.allgo.util.DateUtil;
+import cn.edu.njupt.allgo.util.ImageUtil;
 import cn.edu.njupt.allgo.vo.UserDataVo;
 import cn.edu.njupt.allgo.widget.CircularImage;
 import android.app.Activity;
@@ -49,6 +50,7 @@ public class IntroFRAGMENT extends BaseChildFRAGMENT implements RefreshInterFace
 	private FadingActionBarHelper mFadingHelper;
 	private CircularImage cover_user_photo;
 	private Button button_openMyEvent;
+	private ImageUtil imageUtil;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -96,6 +98,9 @@ public class IntroFRAGMENT extends BaseChildFRAGMENT implements RefreshInterFace
 		TextView_intro_UAddress = (TextView) getView().findViewById(R.id.TextView_intro_UAddress);
 		cover_user_photo = (CircularImage) getView().findViewById(R.id.cover_user_photo);
 		button_openMyEvent = (Button)getView().findViewById(R.id.button_openMyEvent);
+		
+		imageUtil = new ImageUtil(getActivity());
+		imageUtil.configDefaultLoadFailedImage(R.drawable.ic_avatar_120);
 	}
 	
 
@@ -111,13 +116,12 @@ public class IntroFRAGMENT extends BaseChildFRAGMENT implements RefreshInterFace
 				startActivity(intent);
 			}
 		});
-		
-		cover_user_photo.setImageResource(R.drawable.default_head_widget);
 	}
 
 
 	private void initUserData() {
 		userDataLogic.initUserData();
+	
 	}
 
 
@@ -131,7 +135,8 @@ public class IntroFRAGMENT extends BaseChildFRAGMENT implements RefreshInterFace
 		TextView_intro_UBirthday.setText(isNull(userdata.getUbirthday())?"还没填写出生日期":userdata.getUbirthday());
 		TextView_intro_URegDate.setText(isNull(DateUtil.showDate(userdata.getUregdate() , "yyyy'年'MMMd日"))?"用户的注册日期":DateUtil.showDate(userdata.getUregdate() , "yyyy'年'MMMd日"));
 		TextView_intro_UAddress.setText(isNull(userdata.getUaddress())?"用户的所在地":userdata.getUaddress());
-		
+
+		imageUtil.displayAvatar(cover_user_photo, userdata.getUid());
 	}
 
 	private boolean isNull(String arg){
@@ -162,6 +167,7 @@ public class IntroFRAGMENT extends BaseChildFRAGMENT implements RefreshInterFace
 			this.userdata = (UserDataVo)result;
 			setUserData(this.userdata);
 			freshFlag = false;
+			Toast.makeText(getActivity(), "已更新", Toast.LENGTH_SHORT).show();
 			break;
 		case -1:
 			Toast.makeText(getActivity(), (String)result, Toast.LENGTH_SHORT).show();

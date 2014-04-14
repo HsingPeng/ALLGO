@@ -26,12 +26,10 @@
                 android:layout_toLeftOf="@+id/imageView1" >
 
                 <ImageView
-                    android:id="@+id/imageView_event_userhead"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView_eventcomment_userhead"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
                     android:layout_margin="4dip"
-                    android:minHeight="50dp"
-                    android:minWidth="50dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/default_head_widget" />
 
@@ -40,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView_eventcomments_UName"
-                    android:layout_toRightOf="@+id/imageView_event_userhead"
+                    android:layout_toRightOf="@+id/imageView_eventcomment_userhead"
                     android:orientation="vertical" >
 
                     <TextView
@@ -62,8 +60,8 @@
                     android:id="@+id/textView_eventcomments_UName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/imageView_event_userhead"
-                    android:layout_toRightOf="@+id/imageView_event_userhead"
+                    android:layout_alignTop="@+id/imageView_eventcomment_userhead"
+                    android:layout_toRightOf="@+id/imageView_eventcomment_userhead"
                     android:text="用户A:" />
             </RelativeLayout>
 

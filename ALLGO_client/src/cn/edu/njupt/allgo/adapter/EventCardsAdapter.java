@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.njupt.allgo.util.DateUtil;
+import cn.edu.njupt.allgo.util.ImageUtil;
 import cn.edu.njupt.allgo.vo.EventVo;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -16,14 +17,17 @@ import android.widget.TextView;
 import cn.edu.njupt.allgo.R;
 
 import com.haarman.listviewanimations.ArrayAdapter;
+import com.lidroid.xutils.BitmapUtils;
 
 public  class EventCardsAdapter extends ArrayAdapter<EventVo> {
 	private List<EventVo> events;
 	private Context Context;
+	private ImageUtil imageUtils;
 
-	public EventCardsAdapter(Context context,ArrayList<EventVo> events) {
+	public EventCardsAdapter(Context context,ArrayList<EventVo> events,ImageUtil imageUtils) {
 		this.Context = context;
 		this.events = events;
+		this.imageUtils = imageUtils;
 	}
 
 	@Override
@@ -59,12 +63,13 @@ public  class EventCardsAdapter extends ArrayAdapter<EventVo> {
 			viewHolder.textView_commentscount = (TextView) view.findViewById(R.id.textView_commentscount);
 			viewHolder.textView_event_position = (TextView) view.findViewById(R.id.textView_event_position);
 			viewHolder.imageView_eventlist_when = (ImageView) view.findViewById(R.id.imageView_eventlist_when);
+			viewHolder.imageView_eventlist_userhead = (ImageView) view.findViewById(R.id.imageView_eventlist_userhead);
 			view.setTag(viewHolder);
 		}else {
 			viewHolder = (ViewHolder) view.getTag();
 			resetViewHolder(viewHolder);
 		}
-		Log.i("","event.uname==>" + event.getUname());
+		//Log.i("","event.uname==>" + event.getUname());
 		viewHolder.textView_username.setText(event.getUname());
 		viewHolder.textView_place.setText(event.getPlace());
 		viewHolder.textView_outline.setText(event.getOutline());
@@ -74,8 +79,10 @@ public  class EventCardsAdapter extends ArrayAdapter<EventVo> {
 		viewHolder.textView_event_position.setText(event.getPosition().split(" ")[0]+
 				"省 "+event.getPosition().split(" ")[1]+"市 "+event.getPosition().split(" ")[2] );
 		viewHolder.imageView_eventlist_when.setImageResource(setWhenImage(event.getStartdate(),event.getEnddate()));
+		imageUtils.configDefaultLoadFailedImage(R.drawable.default_head_widget);
+		imageUtils.displayAvatar(viewHolder.imageView_eventlist_userhead,event.getUid());
 		return view;
-		
+
 		
 	}
 
@@ -103,7 +110,7 @@ public  class EventCardsAdapter extends ArrayAdapter<EventVo> {
 
 	private void resetViewHolder(ViewHolder viewHolder) {
 		// TODO 自动生成的方法存根
-		Log.i("Debug","==resetViewHolder==");
+		//Log.i("Debug","==resetViewHolder==");
 		viewHolder.textView_username.setText(null);
 		viewHolder.textView_place.setText(null);
 		viewHolder.textView_outline.setText(null);
@@ -111,7 +118,6 @@ public  class EventCardsAdapter extends ArrayAdapter<EventVo> {
 		viewHolder.textView_followerscount.setText(null);
 		viewHolder.textView_commentscount.setText(null);
 		viewHolder.textView_event_position.setText(null);
-		viewHolder.imageView_eventlist_when.setImageBitmap(null);
 	}
 
 
@@ -124,5 +130,6 @@ public  class EventCardsAdapter extends ArrayAdapter<EventVo> {
 		TextView textView_commentscount;
 		TextView textView_event_position;
 		ImageView imageView_eventlist_when;
+		ImageView imageView_eventlist_userhead;
 	}
 }

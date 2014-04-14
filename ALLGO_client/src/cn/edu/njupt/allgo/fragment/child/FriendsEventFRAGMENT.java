@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
+import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.bitmap.PauseOnScrollListener;
 
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import cn.edu.njupt.allgo.R;
@@ -15,6 +17,7 @@ import cn.edu.njupt.allgo.logic.FriendsEventLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logicImpl.FriendsEventLogicImpl;
 import cn.edu.njupt.allgo.util.ArrayListUtil;
+import cn.edu.njupt.allgo.util.ImageUtil;
 import cn.edu.njupt.allgo.vo.EventVo;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -47,6 +50,7 @@ public class FriendsEventFRAGMENT extends BaseChildFRAGMENT
 	private EventCardsAdapter eventcardsAdapter;
 	private SwingBottomInAnimationAdapter swingBottomInAnimationAdapter;
 	private FriendsEventLogic friendEventLogic ;
+	private ImageUtil bitmapUtils;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -96,7 +100,10 @@ public class FriendsEventFRAGMENT extends BaseChildFRAGMENT
 
          mPullToRefreshAttacher.addRefreshableView(listView, this);
 
-		eventcardsAdapter = new EventCardsAdapter(getActivity(),eventsData);
+         bitmapUtils =  new ImageUtil(getActivity());
+  		listView.setOnScrollListener(new PauseOnScrollListener(bitmapUtils, false, true)); 
+         
+		eventcardsAdapter = new EventCardsAdapter(getActivity(),eventsData,bitmapUtils);
 		swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(eventcardsAdapter);
 		swingBottomInAnimationAdapter.setInitialDelayMillis(300);
 		swingBottomInAnimationAdapter.setAbsListView(listView);

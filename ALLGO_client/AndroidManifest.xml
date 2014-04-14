@@ -114,7 +114,7 @@
         <service android:name="cn.edu.njupt.allgo.service.PullService"></service>
         
         <activity 
-            android:name="AboutACTIVITY"
+            android:name="cn.edu.njupt.allgo.activity.AboutACTIVITY"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
             ></activity>
         

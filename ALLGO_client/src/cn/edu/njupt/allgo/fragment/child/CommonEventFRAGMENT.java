@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
+import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.bitmap.PauseOnScrollListener;
 
 import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.activity.AddEventACTIVITY;
@@ -18,6 +20,7 @@ import cn.edu.njupt.allgo.logic.CommonEventLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logicImpl.CommonEventLogicImpl;
 import cn.edu.njupt.allgo.util.ArrayListUtil;
+import cn.edu.njupt.allgo.util.ImageUtil;
 import cn.edu.njupt.allgo.vo.EventVo;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -50,6 +53,7 @@ public class CommonEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefr
 	private boolean listflag = false ;  //保证上滑刷新的线程同时只开启一个
 	private boolean listfootflag = false ; ////保证页脚只有一个
 	private CommonEventLogic commonEventLogic  ;
+	private ImageUtil imageUtils;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -85,7 +89,11 @@ public class CommonEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefr
 
          mPullToRefreshAttacher.addRefreshableView(listView, this);
 
-		eventcardsAdapter = new EventCardsAdapter(getActivity(),eventsData);
+         
+        imageUtils =  new ImageUtil(getActivity());
+  		listView.setOnScrollListener(new PauseOnScrollListener(imageUtils, false, true));
+  		
+		eventcardsAdapter = new EventCardsAdapter(getActivity(),eventsData,imageUtils);
 		swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(eventcardsAdapter);
 		swingBottomInAnimationAdapter.setInitialDelayMillis(300);
 		swingBottomInAnimationAdapter.setAbsListView(listView);

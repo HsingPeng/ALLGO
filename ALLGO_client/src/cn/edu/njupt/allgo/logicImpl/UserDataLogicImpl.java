@@ -43,6 +43,7 @@ public class UserDataLogicImpl implements UserDataLogic {
 	public void initUserData() {
 		userdata = new UserDataVo();
 		SharedPreferences sharedPref = context.getSharedPreferences("userdata",Context.MODE_PRIVATE);
+		userdata.setUid(sharedPref.getInt("uid", -1));
 		userdata.setUname(sharedPref.getString("uname", ""));
 		userdata.setUsatement(sharedPref.getString("usatement", ""));
 		userdata.setUsex(sharedPref.getInt("usex", 1));

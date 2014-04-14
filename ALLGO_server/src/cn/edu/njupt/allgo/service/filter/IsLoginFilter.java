@@ -36,29 +36,42 @@ public class IsLoginFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse)response;
 		String uri = req.getRequestURI().substring(req.getContextPath().length()+1);
 		System.out.println("IsLoginFilter==>"+uri);
+		
+		if(isNeedLogin(uri)){
+		
 		HttpSession session = req.getSession(false);
-		switch(uri){
-		case "login":
+			switch(uri){
+				case "login":
+					filterChain.doFilter(request, response);
+					break;
+				case "register":
+					filterChain.doFilter(request, response);
+					break;
+				default:
+					if(session!=null){
+						filterChain.doFilter(request, response);
+					}else{
+						Map<String, Object> outMap = new HashMap<String, Object>();
+						outMap.put("response", "notlogin");
+						CommonUtil.renderJson(resp, outMap);
+						return;
+					}
+					break;
+			}	
+		}else{
 			filterChain.doFilter(request, response);
-			break;
-		case "register":
-			filterChain.doFilter(request, response);
-			break;
-		case "pull.ws":		//放到下级处理
-			filterChain.doFilter(request, response);
-			break;
-		default:
-			if(session!=null){
-				filterChain.doFilter(request, response);
-			}else{
-				Map<String, Object> outMap = new HashMap<String, Object>();
-				outMap.put("response", "notlogin");
-				CommonUtil.renderJson(resp, outMap);
-				return;
-			}
-			break;
 		}
 		
+	}
+
+	private boolean isNeedLogin(String uri) {
+		boolean flag = true;
+		
+		if(uri.endsWith(".jpg")||uri.endsWith(".png")||uri.endsWith(".ws")){
+			flag = false;
+		}
+		
+		return flag;
 	}
 
 	@Override

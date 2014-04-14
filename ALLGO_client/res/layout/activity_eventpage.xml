@@ -54,13 +54,11 @@
 
                         <ImageView
                             android:id="@+id/imageView_event_userhead"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="50dip"
+                            android:layout_height="50dip"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentTop="true"
                             android:layout_margin="4dip"
-                            android:minHeight="50dp"
-                            android:minWidth="50dp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/default_head_widget" />
 
@@ -339,7 +337,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true" >
 
                     <ImageView
                         android:id="@+id/imageView_eventpage_when"

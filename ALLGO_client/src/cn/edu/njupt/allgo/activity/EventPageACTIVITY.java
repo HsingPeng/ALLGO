@@ -12,6 +12,7 @@ import cn.edu.njupt.allgo.logic.EventPageLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logicImpl.EventPageLogicImpl;
 import cn.edu.njupt.allgo.util.DateUtil;
+import cn.edu.njupt.allgo.util.ImageUtil;
 import cn.edu.njupt.allgo.vo.EventAddVo;
 import cn.edu.njupt.allgo.vo.EventCommentVo;
 import cn.edu.njupt.allgo.vo.EventFollowerVo;
@@ -67,6 +68,8 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 	private PullToRefreshAttacher mPullToRefreshAttacher;
 	private PullToRefreshLayout ptrLayout;
 	private ImageView imageView_eventpage_when;
+	private ImageView imageView_event_userhead;
+	private ImageUtil imageUtil;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +100,7 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 		button_follow = (Button) findViewById(R.id.button_follow);
 		Button_comment = (Button) findViewById(R.id.Button_comment);
 		imageView_eventpage_when = (ImageView) findViewById(R.id.imageView_eventpage_when);
+		imageView_event_userhead = (ImageView) findViewById(R.id.imageView_event_userhead);
 		LinearLayout_EventAdd = (LinearLayout) findViewById(R.id.LinearLayout_EventAdd);
 		LinearLayout_EventComments = (LinearLayout) findViewById(R.id.LinearLayout_EventComments);
 		linearLayout_eventpage_endtime = (LinearLayout) findViewById(R.id.linearLayout_eventpage_endtime);
@@ -137,6 +141,9 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 		        newFragment.show(getSupportFragmentManager(), "dialog");
 			}
 		});
+		
+		imageUtil = new ImageUtil(this);
+		imageUtil.configDefaultLoadFailedImage(R.drawable.default_head_widget);
 		
 	}
 	
@@ -203,6 +210,9 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 				"省 "+eventdata.getPosition().split(" ")[1]+"市 "+eventdata.getPosition().split(" ")[2]);
 		imageView_eventpage_when.setImageResource(setWhenImage(eventdata.getStartdate(),eventdata.getEnddate()));
 		isUpZhu();
+
+		imageUtil.displayAvatar(imageView_event_userhead, eventdata.getUid());
+		
 	}
 
 	/**
@@ -231,11 +241,6 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 	 * 填充活动补充和评论
 	 */
 	private void inflaterEventdetails() {
-		/*addEventAddVo(new EventAddVo(1300130, eventdate.getEid(), "我要补充一点，xxxxx", "Mon Feb 15 09:00:00 GMT+08:00 2014"));
-		addEventAddVo(new EventAddVo(1300131, eventdate.getEid(), "我再说一下，yyyyyyyy", "Mon Feb 15 09:03:00 GMT+08:00 2014"));
-		
-		addEventCommentVo(new EventCommentVo(21300130, 54321, "完美猫", eventdate.getEid(), "Mon Feb 15 09:30:00 GMT+08:00 2014", 0, null, "好的好的！"));
-		addEventCommentVo(new EventCommentVo(21300131, 654321, "PINK", eventdate.getEid(), "Mon Feb 15 10:30:00 GMT+08:00 2014", 54321, "完美猫", "好的好的！"));*/
 		mPullToRefreshAttacher.setRefreshing(true);
 		eventPageLogic.getEventDetails(eventdata.getEid());
 		
@@ -266,6 +271,7 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 		TextView textView_eventcomments_ReplyUName = (TextView)layout.findViewById(R.id.textView_eventcomments_ReplyUName);
 		TextView textView_eventcomments_Texts = (TextView)layout.findViewById(R.id.textView_eventcomments_Texts);
 		TextView TextView_eventcomments_AddTime = (TextView)layout.findViewById(R.id.TextView_eventcomments_SendTime);
+		ImageView imageView_eventcomment_userhead = (ImageView)layout.findViewById(R.id.imageView_eventcomment_userhead);
 		Button button_comments = (Button)layout.findViewById(R.id.button_eventcomments);
 		button_comments.setTag(arg0);
 		button_comments.setOnClickListener(new View.OnClickListener() {
@@ -291,6 +297,8 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 		}
 		textView_eventcomments_Texts.setText(arg0.getTexts());
 		TextView_eventcomments_AddTime.setText(DateUtil.showDate(arg0.getSendtime()));
+		imageUtil.displayAvatar(imageView_eventcomment_userhead, arg0.getUid());
+		
 		LinearLayout_EventComments.addView(layout);
 	}
 	
