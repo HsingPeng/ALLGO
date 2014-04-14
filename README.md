@@ -19,7 +19,7 @@ ALLGO（都来）
 
 * xUtils: https://github.com/wyouflf/xUtils
  
-* FadingActionBar https://github.com/ManuelPeinado/FadingActionBar
+* FadingActionBar: https://github.com/ManuelPeinado/FadingActionBar
 
 ##服务器相关
 
