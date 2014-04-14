@@ -18,6 +18,8 @@ ALLGO（都来）
 * ListViewAnimations: https://github.com/nhaarman/ListViewAnimations
 
 * xUtils: https://github.com/wyouflf/xUtils
+ 
+* FadingActionBar https://github.com/ManuelPeinado/FadingActionBar
 
 ##服务器相关
 
