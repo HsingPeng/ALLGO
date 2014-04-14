@@ -43,7 +43,6 @@ public class HomeACTIVITY extends FragmentActivity{
 	private HomeReceiver homeReceiver = new HomeReceiver();;
 	
 	private BaseFRAGMENT currentFragment = null ;
-	private MyHomePageFRAGMENT myhomepageFragment;
 	private AllEventFRAGMENT alleventFragment ;
 	
     private DrawerLayout mDrawerLayout;
@@ -118,7 +117,7 @@ public class HomeACTIVITY extends FragmentActivity{
 		
 		//actionbar和viewpager的初始化
 		mActionBar = getActionBar();
-        mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         
         //drawer 的初始化
         creatdrawer();
@@ -142,7 +141,7 @@ public class HomeACTIVITY extends FragmentActivity{
 	private boolean isActivity(int position){
 		//TODO intent需要修改的地方
 		boolean flag = true ;
-		if(position != 4 && position != 2){
+		if(position != 4 && position != 2 && position != 0){
 			flag = false;
 		}
 		return flag;
@@ -162,11 +161,13 @@ public class HomeACTIVITY extends FragmentActivity{
 	    switch(position){
 	    case 0:  //载入introFragment;lifehistoryFragment
 	    	// Create an instance of ExampleFragment  
-	    	if(myhomepageFragment == null) {
+	    	/*if(myhomepageFragment == null) {
 	    		myhomepageFragment = new MyHomePageFRAGMENT();
 	    	}
-	    	switchContent(myhomepageFragment);
-	    	
+	    	switchContent(myhomepageFragment);*/
+	    	Intent intent=new Intent();
+            intent.setClass(HomeACTIVITY.this,IntroACTIVITY.class);  
+            startActivity(intent);
 	    	break;
 	    case 1:   //载入commoneventFragment;friendseventFragment
 	    	if(alleventFragment == null) {
@@ -184,9 +185,9 @@ public class HomeACTIVITY extends FragmentActivity{
 	    	switchContent(contactFragment);
 	    	break;
 	    case 4:   //载入settingACTIVITY
-	    	Intent intent=new Intent();  
-            intent.setClass(HomeACTIVITY.this,SettingACTIVITY.class);  
-            startActivity(intent);  
+	    	Intent intent1=new Intent();
+            intent1.setClass(HomeACTIVITY.this,SettingACTIVITY.class);  
+            startActivity(intent1);
             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 	    	break;
 	    case 5:   //退出

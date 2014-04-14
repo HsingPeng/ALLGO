@@ -8,7 +8,7 @@ import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnim
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.activity.EventPageACTIVITY;
-import cn.edu.njupt.allgo.activity.HomeACTIVITY;
+import cn.edu.njupt.allgo.activity.MyEventACTIVITY;
 import cn.edu.njupt.allgo.adapter.EventCardsAdapter;
 import cn.edu.njupt.allgo.logic.MyEventLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
@@ -75,7 +75,7 @@ public class MyEventFRAGMENT extends BaseChildFRAGMENT implements PullToRefreshA
 
 		 
 		listView = (ListView)getView().findViewById(R.id.listView_event);
-	     mPullToRefreshAttacher = ((HomeACTIVITY)getActivity())
+	     mPullToRefreshAttacher = ((MyEventACTIVITY)getActivity())
                  .getPullToRefreshAttacher();
 
          mPullToRefreshAttacher.addRefreshableView(listView, this);

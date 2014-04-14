@@ -10,6 +10,7 @@
    <drawable name="tab_selected_pressed">#FFfa8700</drawable>
    <drawable name="tab_selected_focused">#FFf18403</drawable>
    <drawable name="bgColor">#e2e2e2</drawable>
+   <drawable name="ActionBarColor">#f4842d</drawable>
    <color name="transparent_background">#00ffffff</color>
    <color name="font_value_grey">#ff888271</color>
    <color name="font_value">#777777</color>

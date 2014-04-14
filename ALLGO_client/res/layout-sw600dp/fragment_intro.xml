@@ -1,0 +1,65 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView_intro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgColor" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <View
+            android:id="@+id/View1"
+            android:layout_width="fill_parent"
+            android:layout_height="4dip"
+            android:background="#ffffff"
+            android:focusable="false" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:baselineAligned="false" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <include
+                    android:id="@+id/include1"
+                    layout="@layout/intro_card_1" />
+
+                <include
+                    android:id="@+id/include2"
+                    layout="@layout/intro_card_2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <include
+                    android:id="@+id/include3"
+                    layout="@layout/intro_card_3" />
+
+                <include
+                    android:id="@+id/include4"
+                    layout="@layout/intro_card_4" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="600dip"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
