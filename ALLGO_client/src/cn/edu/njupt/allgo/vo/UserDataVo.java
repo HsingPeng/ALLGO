@@ -1,9 +1,15 @@
 package cn.edu.njupt.allgo.vo;
 
-public class UserDataVo {
+import java.io.Serializable;
+
+public class UserDataVo implements Serializable {
 
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 623937101202033311L;
 	private int uid;
 	private String uname;
 	private String upassword;

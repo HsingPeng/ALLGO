@@ -228,16 +228,7 @@ public class AddEventACTIVITY extends BaseActivity implements RefreshInterFace{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent upIntent = new Intent(this, HomeACTIVITY.class);
-                if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
-                    TaskStackBuilder.from(this)
-                            //如果这里有很多原始的Activity,它们应该被添加在这里
-                            .addNextIntent(upIntent)
-                            .startActivities();
-                    finish();
-                } else {
-                    NavUtils.navigateUpTo(this, upIntent);
-                }
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

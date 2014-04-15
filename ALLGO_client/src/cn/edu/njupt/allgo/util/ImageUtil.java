@@ -1,6 +1,11 @@
 package cn.edu.njupt.allgo.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.View;
 import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.application.MyDeclare;
@@ -36,6 +41,20 @@ public class ImageUtil extends BitmapUtils{
 		return result;
 	}
 
+	/**
+	 * 清除某个头像缓存
+	 * @param uid
+	 */
+	public void clearCacheAvatar(int uid){
+		this.clearCache(getAvatarURL(uid));
+	}
 	
+	// 将Bitmap转换成InputStream  
+    public static InputStream Bitmap2InputStream(Bitmap bm) {  
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();  
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);  
+        InputStream is = new ByteArrayInputStream(baos.toByteArray());  
+        return is;  
+    }
 	
 }

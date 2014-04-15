@@ -26,6 +26,7 @@ import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.application.MyDeclare;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logic.RegisterLogic;
+import cn.edu.njupt.allgo.util.ImageUtil;
 import cn.edu.njupt.allgo.util.MD5;
 import cn.edu.njupt.allgo.util.NetUtil;
 import cn.edu.njupt.allgo.util.NetUtil.NetCallBack;
@@ -74,7 +75,7 @@ public class RegisterLogicImpl implements RegisterLogic {
 		}else{
 			bit = avatar;
 		}
-		InputStream s = Bitmap2InputStream(bit);
+		InputStream s = ImageUtil.Bitmap2InputStream(bit);
 		try {
 			netUtil.addStream("avatar",s,s.available());
 		} catch (IOException e) {
@@ -85,12 +86,6 @@ public class RegisterLogicImpl implements RegisterLogic {
 
 	}
 
-	// 将Bitmap转换成InputStream  
-    public InputStream Bitmap2InputStream(Bitmap bm) {  
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();  
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);  
-        InputStream is = new ByteArrayInputStream(baos.toByteArray());  
-        return is;  
-    }
+	
 	
 }

@@ -28,9 +28,10 @@ public class UserDataLogicImpl implements UserDataLogic {
 	private MyDeclare declare;
 	private UserDataVo userdata;
 	
-	public UserDataLogicImpl (Context context , RefreshInterFace refresh){
+	public UserDataLogicImpl (Context context , RefreshInterFace refresh,UserDataVo userdata){
 		this.context = context;
 		this.refresh = refresh;
+		this.userdata = userdata;
 		declare =(MyDeclare)context.getApplicationContext();
 	}
 
@@ -41,7 +42,7 @@ public class UserDataLogicImpl implements UserDataLogic {
 	 */
 	@Override
 	public void initUserData() {
-		userdata = new UserDataVo();
+		//userdata = new UserDataVo();
 		SharedPreferences sharedPref = context.getSharedPreferences("userdata",Context.MODE_PRIVATE);
 		userdata.setUid(sharedPref.getInt("uid", -1));
 		userdata.setUname(sharedPref.getString("uname", ""));

@@ -16,6 +16,10 @@
         <item>添加活动补充</item>
         <item>删除活动</item>
     </string-array>
+    <string-array name="update_userdetail_array">
+        <item>修改头像</item>
+        <item>修改资料</item>
+    </string-array>
 	<string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 </resources>

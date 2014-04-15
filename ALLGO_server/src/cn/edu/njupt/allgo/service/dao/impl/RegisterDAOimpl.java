@@ -15,7 +15,7 @@ public class RegisterDAOimpl implements RegisterDAO{
 
 	@Override
 	public UserDataVo register(String uname, int usex, String uemail,
-			String upassword) {
+			String upassword ,String uregdate) {
 		
 		UserDataVo user = null;
 		try{
@@ -26,6 +26,7 @@ public class RegisterDAOimpl implements RegisterDAO{
 			user.setUsex(usex);
 			user.setUemail(uemail);
 			user.setUpassword(upassword);
+			user.setUregdate(uregdate);
 			s.save(user);
 			t.commit();
 			s.close();

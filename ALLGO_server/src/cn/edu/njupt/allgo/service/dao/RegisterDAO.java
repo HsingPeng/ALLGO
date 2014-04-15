@@ -10,10 +10,11 @@ public interface RegisterDAO {
 	 * @param usex
 	 * @param uemail
 	 * @param upassword
+	 * @param string 
 	 * @return
 	 */
 	public UserDataVo register(String uname, int usex, String uemail,
-			String upassword);
+			String upassword, String uregdate);
 	
 	/**
 	 * 检测邮箱,用户名是否存在

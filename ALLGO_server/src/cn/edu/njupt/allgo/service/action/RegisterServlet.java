@@ -53,7 +53,7 @@ public class RegisterServlet extends HttpServlet {
 			helper.send();
 		}else{
 		
-			UserDataVo vo = dao.register(uname, usex, uemail, upassword);
+			UserDataVo vo = dao.register(uname, usex, uemail, upassword , helper.time());
 			
 			if(vo != null){
 				Part part = helper.getPart("avatar");

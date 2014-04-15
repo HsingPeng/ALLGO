@@ -48,8 +48,8 @@ public class MyHomePageFRAGMENT extends BaseFRAGMENT implements TabListener {
 	@Override
 	public void initActionBar() {
 		getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		getActivity().getActionBar().addTab(getActivity().getActionBar().newTab().setText("我的活动").setTabListener(this));
-		getActivity().getActionBar().addTab(getActivity().getActionBar().newTab().setText("历史活动").setTabListener(this));
+		getActivity().getActionBar().addTab(getActivity().getActionBar().newTab().setText("我组织的").setTabListener(this));
+		getActivity().getActionBar().addTab(getActivity().getActionBar().newTab().setText("我参加的").setTabListener(this));
 	}
 	
 
@@ -63,10 +63,10 @@ public class MyHomePageFRAGMENT extends BaseFRAGMENT implements TabListener {
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		// TODO 自动生成的方法存根
 		String text = (String) tab.getText() ;
-		if(text.equals("我的活动")) {
+		if(text.equals("我组织的")) {
 			mViewPager0.setCurrentItem(0);
 		}
-		if(text.equals("历史活动")) {
+		if(text.equals("我参加的")) {
 			mViewPager0.setCurrentItem(1);
 		}
 	}

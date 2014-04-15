@@ -18,9 +18,16 @@ public class MyDateSpinnerA extends Spinner  {
 	
     public MyDateSpinnerA(Context context) {
         super(context);
+        if (isInEditMode()) {
+            return;
+        }
         // TODO Auto-generated constructor stub
     }
  
+    public void setDate(String date){
+    	
+    }
+    
     public MyDateSpinnerA(Context context, AttributeSet attrs) {
         super(context, attrs);
         if (isInEditMode()) {

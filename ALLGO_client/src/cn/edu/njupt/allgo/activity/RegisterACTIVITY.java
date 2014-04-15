@@ -170,7 +170,7 @@ public class RegisterACTIVITY extends BaseActivity implements RefreshInterFace{
 	protected void onDestroy() {
 		super.onDestroy();
 		closeProgressDialog();
-		avatarUtil.deleteFile();
+		avatarUtil.destroy();
 	}
 	
 	private void showProgressDialog(String title) {

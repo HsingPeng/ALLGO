@@ -363,22 +363,27 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 	public void dialog_click (int which){
 		switch(which){
         case 0:		//添加活动补充
-     	   final EditText edit  = new EditText(this);
-	     	  new AlertDialog.Builder(this)
-	          .setTitle("活动补充")
-	          .setView(edit)
-	          .setPositiveButton("发送", new DialogInterface.OnClickListener() {
-	              public void onClick(DialogInterface dialog, int whichButton) {
-	            	  showProgressDialog("正在发送");
-	                  EventPageACTIVITY.this.sendAdd(edit.getText().toString());
-	                  
-	              }
-	          })
-	          .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-	              public void onClick(DialogInterface dialog, int whichButton) {
-	            	  
-	              }
-	          }).show();
+        	if(DateUtil.judgeDate(eventdata.getStartdate(), eventdata.getEnddate()) != 1){
+        		final EditText edit  = new EditText(this);
+  	     	  new AlertDialog.Builder(this)
+  	          .setTitle("活动补充")
+  	          .setView(edit)
+  	          .setPositiveButton("发送", new DialogInterface.OnClickListener() {
+  	              public void onClick(DialogInterface dialog, int whichButton) {
+  	            	  showProgressDialog("正在发送");
+  	                  EventPageACTIVITY.this.sendAdd(edit.getText().toString());
+  	                  
+  	              }
+  	          })
+  	          .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+  	              public void onClick(DialogInterface dialog, int whichButton) {
+  	            	  
+  	              }
+  	          }).show();
+        	}else{
+        		Toast.makeText(this, "活动已经结束，不能补充", Toast.LENGTH_SHORT).show();
+        	}
+     	   
      	   break;
         case 1:		//删除活动
         	new AlertDialog.Builder(this)
@@ -453,7 +458,6 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 				for(EventAddVo eventAdd : list1){
 					addEventAddVo(eventAdd);
 				}
-				closeProgressDialog();
 				break;
 			case 2:		//添加活动评论
 				if(mPullToRefreshAttacher.isRefreshing()){
@@ -464,30 +468,29 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 				for(EventCommentVo eventComment : list2){
 					addEventCommentVo(eventComment);
 				}
-				closeProgressDialog();
 				break;
 			case -1:
 				Toast.makeText(this, (String)result, Toast.LENGTH_SHORT).show();
 				if(mPullToRefreshAttacher.isRefreshing()){
 					mPullToRefreshAttacher.setRefreshComplete();
 				}
-				closeProgressDialog();
 				break;
 			case 3:
 				addEventCommentVo((EventCommentVo)result);
-				closeProgressDialog();
 				break;
 			case 4:
 				Toast.makeText(this, "加入成功", Toast.LENGTH_SHORT).show();
 				setFollowButton();
-				
-				closeProgressDialog();
+					SharedPreferences share = this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+					followersUids.add((Integer)share.getInt("uid", -1));
+					followersAdapter.notifyDataSetChanged();
 				break;
 			case 5:
 				Toast.makeText(this, "取消加入", Toast.LENGTH_SHORT).show();
 				setUnFollowButton();
-				
-				closeProgressDialog();
+				SharedPreferences share1 = this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+				followersUids.remove((Integer)share1.getInt("uid", -1));
+				followersAdapter.notifyDataSetChanged();
 				break;
 			case 6:		//设置跟随人数
 				textView_eventpage_followerscount.setText((String)result);
@@ -498,11 +501,9 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 			case 8:		//添加活动补充
 				Toast.makeText(this, "添加补充成功", Toast.LENGTH_SHORT).show();
 				addEventAddVo((EventAddVo)result);
-				closeProgressDialog();
 				break;
 			case 9:		//删除活动
 				Toast.makeText(this, "活动已删除", Toast.LENGTH_SHORT).show();
-				closeProgressDialog();
 				Intent intent = new Intent(this,HomeACTIVITY.class);
 				intent.putExtra("action", 2);
 				Bundle bundle = new Bundle();
@@ -515,8 +516,8 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 				if(mPullToRefreshAttacher.isRefreshing()){
 					mPullToRefreshAttacher.setRefreshComplete();
 				}
-				SharedPreferences share = EventPageACTIVITY.this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
-				int uid = share.getInt("uid", -1);
+				SharedPreferences share2 = EventPageACTIVITY.this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+				int uid = share2.getInt("uid", -1);
 				List<EventFollowerVo> list3 = (ArrayList<EventFollowerVo>)result ;
 				for(EventFollowerVo eventFollower : list3){
 					
@@ -532,10 +533,12 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 
 				setFollowerGridViewHight();
 				
-				closeProgressDialog();
 				break;
 			}
 			
+			setFollowerGridViewHight();
+			closeProgressDialog();
+
 		}
 
 		

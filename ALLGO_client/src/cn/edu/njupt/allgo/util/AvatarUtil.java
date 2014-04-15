@@ -27,8 +27,8 @@ import android.widget.ImageButton;
 /**
  * 1.构造时将Activity和imagebutton传入
  * 2.需要重写Activiy的onActivityResult方法,里面写入本类的onActivityResult方法
- * 3.调用getAvatar或者getFile获取图片
- * 4.结束时调用deleteFile删除临时文件
+ * 3.调用getAvatar获取图片
+ * 4.结束时调用destroy删除临时文件
  * @author 深蓝
  *
  */
@@ -48,14 +48,15 @@ public class AvatarUtil {
 	 * 照相或相册获取头像
 	 * 1.构造时将Activity和imagebutton传入
 	 * 2.需要重写Activiy的onActivityResult方法,里面写入本类的onActivityResult方法
-	 * 3.调用getAvatar获取图片或
+	 * 3.调用getAvatar获取图片
+	 * 4.最好在结束时调用destroy()方法
 	 * @author 深蓝
 	 *
 	 */
 	public AvatarUtil(ImageButton img_btn,Activity activity){
 		this.img_btn = img_btn;
 		this.activity=activity;
-		tempFile.deleteOnExit();			//退出时自动删除临时文件
+		tempFile.deleteOnExit();			//退出时自动删除临时文件,经测试可能不起作用，原因不明
 		img_btn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -149,18 +150,18 @@ public class AvatarUtil {
 		 * 得到图像文件
 		 * @return
 		 */
-		public File getFile(){
+		/*public File getFile(){
 				if(photo == null){
 					return null;
 				}else{
 					return tempFile;
 				}
-			}
+			}*/
 
 		/**
 		 * 删除临时文件
 		 */
-		public void deleteFile(){
+		public void destroy(){
 			tempFile.delete();
 		}
 		
@@ -190,12 +191,12 @@ public class AvatarUtil {
 			Bundle bundle = picdata.getExtras();
 			if (bundle != null) {
 			photo = bundle.getParcelable("data");
-			saveFile();
+			//saveFile();
 			img_btn.setImageBitmap(photo);
 			}
 		}
 		
-		
+		//废弃
 		private void saveFile(){
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			photo.compress(CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
