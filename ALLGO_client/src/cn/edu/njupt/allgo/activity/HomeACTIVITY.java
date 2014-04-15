@@ -362,7 +362,9 @@ public class HomeACTIVITY extends FragmentActivity{
     private void openUnread() {
 		Intent intent = new Intent(this,UnreadACTIVITY.class);
 		startActivity(intent);
-		actionItem_unread.setIcon(R.drawable.ic_action_email);
+		if(actionItem_unread != null){
+			actionItem_unread.setIcon(R.drawable.ic_action_email);
+		}
 		NotificationManager mNotificationManager = 
 				(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.cancel(1001);
@@ -439,12 +441,6 @@ public class HomeACTIVITY extends FragmentActivity{
 		switch(action){
 		case 1:
 			openUnread();
-			/*if(unreadFragment == null){
-				selectItem(2);
-				}else{
-					selectItem(2);
-					unreadFragment.refresh(null, 3);
-				}*/
 		break;
 		case 2:
 			if(alleventFragment != null){
@@ -453,7 +449,8 @@ public class HomeACTIVITY extends FragmentActivity{
 			}
 			break;
 		}
-		
+		intent = new Intent();
+		setIntent(intent);
 		
 	}
 
