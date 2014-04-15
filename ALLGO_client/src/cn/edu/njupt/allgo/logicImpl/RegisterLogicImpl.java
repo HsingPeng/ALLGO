@@ -1,5 +1,11 @@
 package cn.edu.njupt.allgo.logicImpl;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,6 +19,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.util.Log;
 import cn.edu.njupt.allgo.application.MyDeclare;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
@@ -35,8 +42,8 @@ public class RegisterLogicImpl implements RegisterLogic {
 	
 	@Override
 	public void register(String uname, int usex, String uemail,
-			String upassword) {
-
+			String upassword,File avatar) {
+	
         NetUtil netUtil = new NetUtil("register", refresh, context, new NetCallBack(){
 			@Override
 			public void getResult(JSONObject jsonObject) {
@@ -57,8 +64,30 @@ public class RegisterLogicImpl implements RegisterLogic {
         netUtil.add("uemail", uemail);
 		netUtil.add("upassword",  MD5.digest(upassword));
 		netUtil.add("usex", usex+"");
+		netUtil.addFile("avatar", avatar);
 		netUtil.post();
 
+	}
+	
+	public void sendAvatar(File avatar) {
+		if(avatar != null){
+			NetUtil netUtil = new NetUtil("user/avatar", refresh, context, new NetCallBack(){
+				@Override
+				public void getResult(JSONObject jsonObject) {
+					try {
+						 if(jsonObject.getString("response").equals("user_avatar")){
+							refresh.refresh(null, 2);
+	         	        }else{
+	         	        	refresh.refresh("头像发送出错", -1);
+	         	        }
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			netUtil.addFile("avatar", avatar);
+			netUtil.post();
+		}
 	}
 
 }

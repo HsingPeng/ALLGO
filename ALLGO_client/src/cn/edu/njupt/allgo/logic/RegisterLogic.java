@@ -1,5 +1,9 @@
 package cn.edu.njupt.allgo.logic;
 
+import java.io.File;
+
+import android.graphics.Bitmap;
+
 public interface RegisterLogic {
 	
 	/**
@@ -8,6 +12,8 @@ public interface RegisterLogic {
 	 * @param usex
 	 * @param uemail
 	 * @param upassword
+	 * @param avatar 
 	 */
-	public void register(String uname ,int usex ,String uemail ,String upassword );
+	public void register(String uname ,int usex ,String uemail ,String upassword, File avatar );
+	
 }

@@ -1,11 +1,14 @@
 package cn.edu.njupt.allgo.service.utils;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 public class ServletHelper {
 
@@ -42,6 +45,11 @@ public class ServletHelper {
 			result = Integer.parseInt(value);
 		}
 		return result ;
+	}
+	
+	public Part getPart(String key) throws IllegalStateException, IOException, ServletException{
+		Part part = request.getPart(key);
+		return part;
 	}
 	
 	/**

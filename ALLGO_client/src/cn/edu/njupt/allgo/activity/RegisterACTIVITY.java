@@ -6,6 +6,7 @@ import cn.edu.njupt.allgo.fragment.LoginDialogFRAGMENT;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logic.RegisterLogic;
 import cn.edu.njupt.allgo.logicImpl.RegisterLogicImpl;
+import cn.edu.njupt.allgo.util.AvatarUtil;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -19,6 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -33,16 +36,24 @@ public class RegisterACTIVITY extends BaseActivity implements RefreshInterFace{
 	private EditText EditText_register_passconfirm;
 	private Button Button_register_cancel;
 	private Button button_register_submit;
-	private String usex = "男" ;
+	private String usex = "男";
 	private String uname;
 	private String uemail;
 	private String upassword;
 	private String upassconfirm;
 	private ProgressDialog progressDialog;
 	private RegisterLogic registerLogic ;
+	private ImageButton imageButton_register_avatar;
+	private AvatarUtil avatarUtil;
+
+	
 
 
-
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		avatarUtil.onActivityResult(requestCode, resultCode, data);
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +76,9 @@ public class RegisterACTIVITY extends BaseActivity implements RefreshInterFace{
 		EditText_register_passconfirm = (EditText)findViewById(R.id.EditText_register_passconfirm);
 		Button_register_cancel = (Button)findViewById(R.id.Button_register_cancel);
 		button_register_submit = (Button)findViewById(R.id.button_register_submit);
+		imageButton_register_avatar = (ImageButton)findViewById(R.id.imageButton_register_avatar);
+		
+		avatarUtil = new AvatarUtil(imageButton_register_avatar,this);
 		
 		radioGroup_register_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -96,9 +110,9 @@ public class RegisterACTIVITY extends BaseActivity implements RefreshInterFace{
 							/*Toast.makeText(RegisterACTIVITY.this,
 									uname + usex + uemail + upassword + upassconfirm, Toast.LENGTH_SHORT).show();*/
 							showProgressDialog("正在注册");
-							registerLogic.register(uname, usex.equals("男")?1:0, uemail, upassword);
+							registerLogic.register(uname, usex.equals("男")?1:0, uemail, upassword,avatarUtil.getFile());
 						}
-						
+
 					}
 				});
 		
@@ -156,7 +170,7 @@ public class RegisterACTIVITY extends BaseActivity implements RefreshInterFace{
 	protected void onDestroy() {
 		super.onDestroy();
 		closeProgressDialog();
-		Log.i("Activity"," onDestroy() ==> AddEventACTIVITY");
+		avatarUtil.deleteFile();
 	}
 	
 	private void showProgressDialog(String title) {

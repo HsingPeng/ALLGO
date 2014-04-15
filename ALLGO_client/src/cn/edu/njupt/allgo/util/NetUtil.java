@@ -1,5 +1,7 @@
 package cn.edu.njupt.allgo.util;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +32,8 @@ import cn.edu.njupt.allgo.logic.RefreshInterFace;
 
 public class NetUtil {
 
-	private Map<String,String> params= new HashMap<String,String>();
+	private Map<String,String> myParams;
+	private RequestParams params;
 	private String uri;
 	private RefreshInterFace refresh;
 	private NetCallBack callback;
@@ -54,25 +57,29 @@ public class NetUtil {
 		this.context = context;
 		this.callback = callback;
 		declare =(MyDeclare)context.getApplicationContext();
+		myParams= new HashMap<String,String>();
+		params = new RequestParams();
 	}
 
 	/**
 	 * 发送post请求
 	 */
 	public void post(){
-		RequestParams params = new RequestParams();
-		for (Map.Entry<String, String> entry : this.params.entrySet()) {
+		for (Map.Entry<String, String> entry : this.myParams.entrySet()) {
 			   params.addBodyParameter(entry.getKey(), entry.getValue());
 			  }
-		send(HttpRequest.HttpMethod.POST,params);
+		if(isNetworkConnected(context)){
+			send(HttpRequest.HttpMethod.POST,params);
+		}else{
+			refresh.refresh("没有联网", -1);
+		}
 	}
 	
 	/**
 	 * 发送get请求
 	 */
 	public void get(){
-		RequestParams params = new RequestParams();
-		for (Map.Entry<String, String> entry : this.params.entrySet()) {
+		for (Map.Entry<String, String> entry : this.myParams.entrySet()) {
 			   params.addQueryStringParameter(entry.getKey(), entry.getValue());
 			  }
 		if(isNetworkConnected(context)){
@@ -83,7 +90,6 @@ public class NetUtil {
 	}
 
 	private void send(HttpRequest.HttpMethod arg0,RequestParams params){
-		
 		SharedPreferences sharedPref = context.getSharedPreferences("appdata",Context.MODE_PRIVATE);
 		params.addHeader("Cookie","JSESSIONID="+sharedPref.getString("SessionId", ""));
 		http = new HttpUtils();
@@ -95,12 +101,12 @@ public class NetUtil {
 	
 					@Override
 	                public void onStart() {
-	                	Log.i("Http" ,"onStart" ) ;
+	                	Log.i(TAG ,"onStart" ) ;
 	                }
 					
 	                @Override
 	                public void onSuccess(ResponseInfo<String> responseInfo) {
-	                	Log.i("Http", "Http==>"+responseInfo.result);
+	                	Log.i(TAG, "Http==>"+responseInfo.result);
 						try {
 							jsonObject = new JSONObject(responseInfo.result);
 							 if(jsonObject.getString("response").equals("error")){
@@ -119,7 +125,7 @@ public class NetUtil {
 	                }
 	                @Override
 	                public void onFailure(HttpException error, String msg) {
-	                	Log.i("Http" ,"error==>" +  msg ) ;
+	                	Log.i(TAG ,"error==>" +  msg ) ;
 	                	refresh.refresh(msg, -1);
 	                }
 	            });
@@ -131,7 +137,7 @@ public class NetUtil {
 	 * @param value
 	 */
 	public void add(String key,String value){
-		params.put(key, value);
+		myParams.put(key, value);
 	}
 	
 	/**
@@ -140,6 +146,33 @@ public class NetUtil {
 	 */
 	public void setURI(String uri){
 		this.uri = uri;
+	}
+	
+	/**
+	 * 得到params
+	 * @return
+	 */
+	public RequestParams getParams(){
+		return params;
+	}
+	
+	/**
+	 * 添加文件
+	 * @param key
+	 * @param file
+	 */
+	public void addFile(String key, File file){
+		params.addBodyParameter(key, file);
+	}
+	
+	/**
+	 * 添加输入流
+	 * @param key
+	 * @param stream
+	 * @param length
+	 */
+	public void addStream(String key , InputStream stream , long length){
+		params.addBodyParameter(key, stream, length);
 	}
 	
 	/**
