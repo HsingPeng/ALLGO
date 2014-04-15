@@ -20,7 +20,9 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
+import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.application.MyDeclare;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logic.RegisterLogic;
@@ -42,8 +44,9 @@ public class RegisterLogicImpl implements RegisterLogic {
 	
 	@Override
 	public void register(String uname, int usex, String uemail,
-			String upassword,File avatar) {
+			String upassword,Bitmap avatar) {
 	
+		
         NetUtil netUtil = new NetUtil("register", refresh, context, new NetCallBack(){
 			@Override
 			public void getResult(JSONObject jsonObject) {
@@ -64,30 +67,30 @@ public class RegisterLogicImpl implements RegisterLogic {
         netUtil.add("uemail", uemail);
 		netUtil.add("upassword",  MD5.digest(upassword));
 		netUtil.add("usex", usex+"");
-		netUtil.addFile("avatar", avatar);
+		
+		Bitmap bit = null;
+		if(avatar == null){
+			bit = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_avatar_120);
+		}else{
+			bit = avatar;
+		}
+		InputStream s = Bitmap2InputStream(bit);
+		try {
+			netUtil.addStream("avatar",s,s.available());
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		netUtil.post();
 
 	}
-	
-	public void sendAvatar(File avatar) {
-		if(avatar != null){
-			NetUtil netUtil = new NetUtil("user/avatar", refresh, context, new NetCallBack(){
-				@Override
-				public void getResult(JSONObject jsonObject) {
-					try {
-						 if(jsonObject.getString("response").equals("user_avatar")){
-							refresh.refresh(null, 2);
-	         	        }else{
-	         	        	refresh.refresh("头像发送出错", -1);
-	         	        }
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-				}
-			});
-			netUtil.addFile("avatar", avatar);
-			netUtil.post();
-		}
-	}
 
+	// 将Bitmap转换成InputStream  
+    public InputStream Bitmap2InputStream(Bitmap bm) {  
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();  
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);  
+        InputStream is = new ByteArrayInputStream(baos.toByteArray());  
+        return is;  
+    }
+	
 }

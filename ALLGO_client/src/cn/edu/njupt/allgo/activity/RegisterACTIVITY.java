@@ -110,7 +110,7 @@ public class RegisterACTIVITY extends BaseActivity implements RefreshInterFace{
 							/*Toast.makeText(RegisterACTIVITY.this,
 									uname + usex + uemail + upassword + upassconfirm, Toast.LENGTH_SHORT).show();*/
 							showProgressDialog("正在注册");
-							registerLogic.register(uname, usex.equals("男")?1:0, uemail, upassword,avatarUtil.getFile());
+							registerLogic.register(uname, usex.equals("男")?1:0, uemail, upassword,avatarUtil.getAvatar());
 						}
 
 					}

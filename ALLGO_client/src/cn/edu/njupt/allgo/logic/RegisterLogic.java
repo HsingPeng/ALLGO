@@ -14,6 +14,6 @@ public interface RegisterLogic {
 	 * @param upassword
 	 * @param avatar 
 	 */
-	public void register(String uname ,int usex ,String uemail ,String upassword, File avatar );
+	public void register(String uname ,int usex ,String uemail ,String upassword, Bitmap avatar );
 	
 }

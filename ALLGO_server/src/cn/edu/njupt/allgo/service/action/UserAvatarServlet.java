@@ -50,7 +50,7 @@ public class UserAvatarServlet extends HttpServlet {
 		}
 		helper.send();
 	}
-	
+
 	public void init() throws ServletException {
 		// Put your code here
 	}

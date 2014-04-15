@@ -6,17 +6,20 @@ import java.util.List;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 import cn.edu.njupt.allgo.R;
+import cn.edu.njupt.allgo.adapter.EventPageFollowersAdapter;
 import cn.edu.njupt.allgo.fragment.AddCommentDialogFRAGMENT;
 import cn.edu.njupt.allgo.fragment.UpdateEventDialogFRAGMENT;
 import cn.edu.njupt.allgo.logic.EventPageLogic;
 import cn.edu.njupt.allgo.logic.RefreshInterFace;
 import cn.edu.njupt.allgo.logicImpl.EventPageLogicImpl;
+import cn.edu.njupt.allgo.util.ArrayListUtil;
 import cn.edu.njupt.allgo.util.DateUtil;
 import cn.edu.njupt.allgo.util.ImageUtil;
 import cn.edu.njupt.allgo.vo.EventAddVo;
 import cn.edu.njupt.allgo.vo.EventCommentVo;
 import cn.edu.njupt.allgo.vo.EventFollowerVo;
 import cn.edu.njupt.allgo.vo.EventVo;
+import cn.edu.njupt.allgo.widget.GrapeGridview;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -35,6 +38,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.LinearLayout;
@@ -70,6 +74,10 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 	private ImageView imageView_eventpage_when;
 	private ImageView imageView_event_userhead;
 	private ImageUtil imageUtil;
+	private GrapeGridview gridView_eventpage_followers;
+	
+	private ArrayList<Integer> followersUids = new ArrayList<Integer>() ;
+	private EventPageFollowersAdapter followersAdapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +85,8 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 		setContentView(R.layout.activity_eventpage);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		eventPageLogic = new EventPageLogicImpl(this,this);
+		imageUtil = new ImageUtil(this);
+		imageUtil.configDefaultLoadFailedImage(R.drawable.default_head_widget);
 		iniView();
 		inflaterEvent();
 		inflaterEventdetails();
@@ -105,6 +115,10 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 		LinearLayout_EventComments = (LinearLayout) findViewById(R.id.LinearLayout_EventComments);
 		linearLayout_eventpage_endtime = (LinearLayout) findViewById(R.id.linearLayout_eventpage_endtime);
 		ptrLayout = (PullToRefreshLayout) findViewById(R.id.ptr_layout);
+		gridView_eventpage_followers = (GrapeGridview) this.findViewById(R.id.gridView_eventpage_followers);
+
+		followersAdapter = new EventPageFollowersAdapter(this,followersUids,imageUtil);
+		gridView_eventpage_followers.setAdapter(followersAdapter);
 		
 		mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
 		ptrLayout.setPullToRefreshAttacher(mPullToRefreshAttacher, this);
@@ -141,9 +155,7 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 		        newFragment.show(getSupportFragmentManager(), "dialog");
 			}
 		});
-		
-		imageUtil = new ImageUtil(this);
-		imageUtil.configDefaultLoadFailedImage(R.drawable.default_head_widget);
+
 		
 	}
 	
@@ -508,17 +520,33 @@ public class EventPageACTIVITY extends BaseActivity implements RefreshInterFace 
 				List<EventFollowerVo> list3 = (ArrayList<EventFollowerVo>)result ;
 				for(EventFollowerVo eventFollower : list3){
 					
+					
+					followersUids.add(eventFollower.getUid());
+					ArrayListUtil.removeDuplicate(followersUids);
+					followersAdapter.notifyDataSetChanged();
+					
 					if(eventFollower.getUid() == uid){
 						setFollowButton();
-					}
-					
+					}	
 				}
+
+				setFollowerGridViewHight();
+				
 				closeProgressDialog();
 				break;
 			}
 			
 		}
 
+		
+		private void setFollowerGridViewHight(){
+			int lieshu = followersUids.size()/gridView_eventpage_followers.getNumColumns();
+			if(followersUids.size()%gridView_eventpage_followers.getNumColumns() != 0){
+				lieshu ++;
+			}
+			gridView_eventpage_followers.getLayoutParams().height = lieshu*62 ;
+		}
+		
 		@Override
 		public void onRefreshStarted(View view) {
 			eventPageLogic.getEventDetails(eventdata.getEid());

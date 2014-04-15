@@ -303,6 +303,17 @@
                                 android:layout_height="wrap_content"
                                 android:text="同去" />
                         </LinearLayout>
+
+                        <cn.edu.njupt.allgo.widget.GrapeGridview
+                            android:id="@+id/gridView_eventpage_followers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:columnWidth="60px"
+						    android:numColumns="auto_fit"
+						    android:stretchMode="columnWidth"
+						     />
+                        
+
                     </LinearLayout>
 
                     <RelativeLayout
