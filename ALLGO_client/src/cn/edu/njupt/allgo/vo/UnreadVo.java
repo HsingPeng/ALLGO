@@ -1,7 +1,5 @@
 package cn.edu.njupt.allgo.vo;
 
-import java.io.Serializable;
-
 import com.lidroid.xutils.db.annotation.Column;
 import com.lidroid.xutils.db.annotation.Id;
 import com.lidroid.xutils.db.annotation.NoAutoIncrement;
