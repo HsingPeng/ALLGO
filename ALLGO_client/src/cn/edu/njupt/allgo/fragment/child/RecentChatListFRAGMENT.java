@@ -7,8 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;  
 import android.view.ViewGroup; 
 
-
-public class ContactListFRAGMENT extends Fragment {
+public class RecentChatListFRAGMENT extends Fragment {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -19,15 +18,9 @@ public class ContactListFRAGMENT extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.fragment_contactlist, null);
+		View view = inflater.inflate(R.layout.fragment_chatlist, null);
 		return view;
 	}
 
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
 
 }

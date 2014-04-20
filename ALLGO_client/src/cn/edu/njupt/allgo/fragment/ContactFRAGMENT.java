@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import cn.edu.njupt.allgo.R;
 import cn.edu.njupt.allgo.adapter.MyViewAdapter;
-import cn.edu.njupt.allgo.fragment.child.ContactListFRAGMENT;
-import cn.edu.njupt.allgo.fragment.child.ChatListFRAGMENT;
+import cn.edu.njupt.allgo.fragment.child.FriendListFRAGMENT;
+import cn.edu.njupt.allgo.fragment.child.RecentChatListFRAGMENT;
 import cn.edu.njupt.allgo.widget.CustomViewPager;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -24,8 +24,8 @@ public class ContactFRAGMENT extends BaseFRAGMENT implements TabListener{
 		private CustomViewPager mViewPager2 ;
 		private ArrayList<Fragment> list2 = new ArrayList<Fragment>();
 		private MyViewAdapter adapter2;
-		private ContactListFRAGMENT contactlistFragment;
-		private ChatListFRAGMENT chatlistFragment;
+		private FriendListFRAGMENT contactlistFragment;
+		private RecentChatListFRAGMENT chatlistFragment;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,8 +36,8 @@ public class ContactFRAGMENT extends BaseFRAGMENT implements TabListener{
 		setFragmentFlag("ContactFRAGMENT");
 		mViewPager2 = (CustomViewPager) view.findViewById(R.id.pager_contact);
 		if(contactlistFragment == null){
-			contactlistFragment = new ContactListFRAGMENT();
-			chatlistFragment= new ChatListFRAGMENT();
+			contactlistFragment = new FriendListFRAGMENT();
+			chatlistFragment= new RecentChatListFRAGMENT();
 	    	list2.add(contactlistFragment);
 	    	list2.add(chatlistFragment);
 		}
