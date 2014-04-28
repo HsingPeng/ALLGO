@@ -117,7 +117,7 @@ public class HomeACTIVITY extends FragmentActivity{
 		
 		//actionbar和viewpager的初始化
 		mActionBar = getActionBar();
-        mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         
         //drawer 的初始化
         creatdrawer();
