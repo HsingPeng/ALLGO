@@ -18,7 +18,7 @@ ALLGO（都来）
 ![Screenshot](https://github.com/HsingPeng/ALLGO/raw/master/header_graphic_01.png)
 
 
-查看完整客户端截图(https://github.com/HsingPeng/ALLGO/tree/master/Screenshot)
+查看完整客户端截图 https://github.com/HsingPeng/ALLGO/tree/master/Screenshot
 
 ##客户端使用的开源库
 
