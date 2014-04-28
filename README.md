@@ -11,17 +11,14 @@ ALLGO（都来）
 
 * 用户登录WebSocket实时接收消息（如活动评论，活动被删除），程序关闭后台Http轮询接收消息
 
-##客户端运行画面
+##软件展示
 
-![Screenshot](https://github.com/HsingPeng/ALLGO/raw/master/Screenshot/01%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2.png)
-![Screenshot](https://github.com/HsingPeng/ALLGO/raw/master/Screenshot/05%E7%BB%84%E7%BB%87%E6%B4%BB%E5%8A%A8%E7%95%8C%E9%9D%A2.png)
+![Screenshot](https://github.com/HsingPeng/ALLGO/raw/master/header_graphic_00.png)
 
-![Screenshot](https://github.com/HsingPeng/ALLGO/raw/master/Screenshot/07%E6%B4%BB%E5%8A%A8%E5%88%97%E8%A1%A8%E7%95%8C%E9%9D%A2.png)
-![Screenshot](https://github.com/HsingPeng/ALLGO/raw/master/Screenshot/10%E6%B4%BB%E5%8A%A8%E4%B8%BB%E9%A1%B5%E7%95%8C%E9%9D%A2B.png)
+![Screenshot](https://github.com/HsingPeng/ALLGO/raw/master/header_graphic_01.png)
 
-![Screenshot](https://github.com/HsingPeng/ALLGO/raw/master/Screenshot/04%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E7%95%8C%E9%9D%A2.png)
-![Screenshot](https://github.com/HsingPeng/ALLGO/raw/master/Screenshot/15%E6%88%91%E7%9A%84%E4%B8%BB%E9%A1%B5%E7%95%8C%E9%9D%A2A.png)
 
+查看完整客户端截图(https://github.com/HsingPeng/ALLGO/tree/master/Screenshot)
 
 ##客户端使用的开源库
 
