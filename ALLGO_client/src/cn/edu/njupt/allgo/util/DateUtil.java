@@ -11,12 +11,12 @@ import java.util.TimeZone;
 public class DateUtil {
 
 	/**
-	 * "yyyy年MM月dd日HH:mm" , "EEE MMM dd hh:mm:ss Z yyyy"
+	 * "yyyy年MM月dd日HH:mm" , "EEE MMM dd HH:mm:ss Z yyyy"
 	 * @param time1
 	 * @return
 	 */
 	public static String changeDate(String time1){
-		return showDate(time1 , "yyyy年MM月dd日HH:mm" , "EEE MMM dd hh:mm:ss Z yyyy");
+		return showDate(time1 , "yyyy年MM月dd日HH:mm" , "EEE MMM dd HH:mm:ss Z yyyy");
 	}
 	
 	/**
@@ -25,7 +25,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static String showDate(String time1) {
-		return showDate(time1 , "EEE MMM dd hh:mm:ss Z yyyy" , "yyyy年MM月dd日 HH:mm");
+		return showDate(time1 , "EEE MMM dd HH:mm:ss Z yyyy" , "yyyy年MM月dd日 HH:mm");
 	}
 	
 	/**
@@ -35,7 +35,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static String showDate(String time1 ,String result) {
-		return showDate(time1 , "EEE MMM dd hh:mm:ss Z yyyy" , result);
+		return showDate(time1 , "EEE MMM dd HH:mm:ss Z yyyy" , result);
 	}
 	
 	
@@ -73,7 +73,7 @@ public class DateUtil {
 	 */
 	public static String smartDate(String start,String end){
 		String result = "";
-		SimpleDateFormat df = new SimpleDateFormat("EEE MMM dd hh:mm:ss Z yyyy",Locale.ENGLISH);
+		SimpleDateFormat df = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy",Locale.ENGLISH);
 		df.setTimeZone(TimeZone.getTimeZone("GMT+08:00"));
 		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd Z yyyy", Locale.ENGLISH);
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT+08:00"));
@@ -106,19 +106,19 @@ public class DateUtil {
 					year.setTimeZone(TimeZone.getTimeZone("GMT+08:00"));
 					String now_year = year.format(now);
 					String start_year = year.format(startdate);
-					showDate(start , "EEE MMM dd hh:mm:ss Z yyyy" , "yyyy");
+					showDate(start , "EEE MMM dd HH:mm:ss Z yyyy" , "yyyy");
 					if(now_year.equals(start_year)){
-						result = showDate(start , "EEE MMM dd hh:mm:ss Z yyyy" , "MM月dd日 HH:mm");
+						result = showDate(start , "EEE MMM dd HH:mm:ss Z yyyy" , "MM月dd日 HH:mm");
 					}else{
 						result = showDate(start);
 					}
 				}else{
 					if(day == 2){
-						result = "后天"+showDate(start , "EEE MMM dd hh:mm:ss Z yyyy" , "HH:mm");
+						result = "后天"+showDate(start , "EEE MMM dd HH:mm:ss Z yyyy" , "HH:mm");
 					}else if(day == 1){
-						result = "明天"+showDate(start , "EEE MMM dd hh:mm:ss Z yyyy" , "HH:mm");
+						result = "明天"+showDate(start , "EEE MMM dd HH:mm:ss Z yyyy" , "HH:mm");
 					}else{
-						result = "今天"+showDate(start , "EEE MMM dd hh:mm:ss Z yyyy" , "HH:mm");
+						result = "今天"+showDate(start , "EEE MMM dd HH:mm:ss Z yyyy" , "HH:mm");
 					}
 				}
 			}
@@ -137,7 +137,7 @@ public class DateUtil {
 	 */
 	public static int judgeDate(String start , String end){
 		int flag  = 1;
-		SimpleDateFormat df = new SimpleDateFormat("EEE MMM dd hh:mm:ss Z yyyy",Locale.ENGLISH);
+		SimpleDateFormat df = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy",Locale.ENGLISH);
 		df.setTimeZone(TimeZone.getTimeZone("GMT+08:00"));
 		try {
 			Date now = new Date();
@@ -171,7 +171,7 @@ public class DateUtil {
 	
 /*	public static String saveDate(String time1){
 		
-		return saveDate(time1 , "E MMM dd hh:mm:ss Z yyyy" , "EEE MMM dd hh:mm:ss Z yyyy");
+		return saveDate(time1 , "E MMM dd HH:mm:ss Z yyyy" , "EEE MMM dd HH:mm:ss Z yyyy");
 	}*/
 	
 	public static String saveDate(String time1 , String source ,String result) {
@@ -209,11 +209,11 @@ public class DateUtil {
 	
 	/**
 	 * String转换到Date
-	 * @param time	"EEE MMM dd hh:mm:ss Z yyyy"
+	 * @param time	"EEE MMM dd HH:mm:ss Z yyyy"
 	 * @return
 	 */
 	public static Date formatDate(String time){
-		SimpleDateFormat sf = new SimpleDateFormat("EEE MMM dd hh:mm:ss Z yyyy", Locale.ENGLISH);
+		SimpleDateFormat sf = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH);
 		sf.setTimeZone(TimeZone.getTimeZone("GMT+08:00"));
 		Date date = null;
 		try {
